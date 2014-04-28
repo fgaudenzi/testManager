@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio - FREE Community Edition 7.0.2.746 (http://www.liquid-technologies.com)-->
+<xs:schema targetNamespace="http://slasoi.org/monitoring/citymonitor/xmlrule" xmlns="http://slasoi.org/monitoring/citymonitor/xmlrule" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="formulasdesc" type="formulasdescType"/>
+	<xs:complexType name="formulasdescType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="datatypes" type="xs:anyURI"/>
+			<xs:element name="formulas" type="formulasType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="formulasType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="formula" type="formulaType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="formulaType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="quantification" type="quantificationType"/>
+			<xs:element minOccurs="0" name="body" type="bodyHeadType"/>
+			<xs:element name="head" type="bodyHeadType"/>
+		</xs:sequence>
+		<xs:attribute name="formulaId" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="xs:string" use="required"/>
+		<xs:attribute default="true" name="forChecking" type="xs:boolean"/>
+		<xs:attribute default="false" name="diagnosisRequired" type="xs:boolean"/>
+		<xs:attribute default="false" name="threatDetectionRequired" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="bodyHeadType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="predicate" type="predicateType"/>
+				<xs:element name="relationalPredicate" type="relationalPredicateType"/>
+			</xs:choice>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="operator" type="logicalOperatorType"/>
+				<xs:choice>
+					<xs:element name="predicate" type="predicateType"/>
+					<xs:element name="timePredicate" type="timePredicateType"/>
+					<xs:element name="relationalPredicate" type="relationalPredicateType"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="predicateType">
+		<xs:choice>
+			<xs:element name="happens" type="happensType"/>
+			<xs:element name="initiates" type="initiatesType"/>
+			<xs:element name="holdsAt" type="holdsAtType"/>
+			<xs:element name="initially" type="holdsAtType"/>
+			<xs:element name="terminates" type="terminatesType"/>
+			<xs:element name="clipped" type="clippedType"/>
+			<xs:element name="declipped" type="declippedType"/>
+		</xs:choice>
+		<xs:attribute default="false" name="negated" type="xs:boolean"/>
+		<xs:attribute default="false" name="unconstrained" type="xs:boolean"/>
+		<xs:attribute default="false" name="recordable" type="xs:boolean"/>
+		<xs:attribute default="false" name="abducible" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="timePredicateType">
+		<xs:choice>
+			<xs:element name="timeEqualTo" type="TimeRelation"/>
+			<xs:element name="timeNotEqualTo" type="TimeRelation"/>
+			<xs:element name="timeLessThan" type="TimeRelation"/>
+			<xs:element name="timeGreaterThan" type="TimeRelation"/>
+			<xs:element name="timeLessThanEqualTo" type="TimeRelation"/>
+			<xs:element name="timeGreaterThanEqualTo" type="TimeRelation"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="holdsAtType">
+		<xs:sequence>
+			<xs:element name="fluent" type="fluentType"/>
+			<xs:element name="timeVar" type="timeVariableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="initiatesType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="ic_term" type="icTermType"/>
+				<xs:element name="ir_term" type="irTermType"/>
+				<xs:element name="rc_term" type="rcTermType"/>
+				<xs:element name="as_term" type="asTermType"/>
+			</xs:choice>
+			<xs:element name="fluent" type="fluentType"/>
+			<xs:element name="timeVar" type="timeVariableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="happensType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="ic_term" type="icTermType"/>
+				<xs:element name="ir_term" type="irTermType"/>
+				<xs:element name="rc_term" type="rcTermType"/>
+				<xs:element name="re_term" type="reTermType"/>
+				<xs:element name="as_term" type="asTermType"/>
+			</xs:choice>
+			<xs:element name="timeVar" type="timeVariableType"/>
+			<xs:element name="fromTime" type="TimeExpression"/>
+			<xs:element name="toTime" type="TimeExpression"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="clippedType">
+		<xs:sequence>
+			<xs:element name="timeVar1" type="timeVariableType"/>
+			<xs:element name="fluent" type="fluentType"/>
+			<xs:element name="timeVar2" type="timeVariableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="declippedType">
+		<xs:sequence>
+			<xs:element name="timeVar1" type="timeVariableType"/>
+			<xs:element name="fluent" type="fluentType"/>
+			<xs:element name="timeVar2" type="timeVariableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="terminatesType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="ic_term" type="icTermType"/>
+				<xs:element name="ir_term" type="irTermType"/>
+				<xs:element name="rc_term" type="rcTermType"/>
+				<xs:element name="as_term" type="asTermType"/>
+			</xs:choice>
+			<xs:element name="fluent" type="fluentType"/>
+			<xs:element name="timeVar" type="timeVariableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fluentType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="target">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="variable" type="variableType"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="source">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="variable" type="variableType"/>
+							<xs:element name="operationCall" type="operationCallType"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="variable" type="variableType"/>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="quantificationType">
+		<xs:sequence>
+			<xs:element name="quantifier">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="forall|existential"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="regularVariable" type="variableType"/>
+				<xs:element name="timeVariable" type="timeVariableType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="icTermType">
+		<xs:sequence>
+			<xs:element name="operationName" type="xs:string"/>
+			<xs:element name="partnerName" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="variable" type="variableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="irTermType">
+		<xs:sequence>
+			<xs:element name="operationName" type="xs:string"/>
+			<xs:element name="partnerName" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rcTermType">
+		<xs:sequence>
+			<xs:element name="operationName" type="xs:string"/>
+			<xs:element name="partnerName" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="reTermType">
+		<xs:sequence>
+			<xs:element name="operationName" type="xs:string"/>
+			<xs:element name="partnerName" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="variable" type="variableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="asTermType">
+		<xs:sequence>
+			<xs:element name="operationName" type="xs:string"/>
+			<xs:element name="id" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="variableType">
+		<xs:sequence>
+			<xs:element name="varName" type="xs:string"/>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="varType" type="xs:string"/>
+					<xs:choice minOccurs="0">
+						<xs:element name="value" type="xs:string"/>
+						<xs:element name="objectValue">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:any/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+				<xs:element name="array" type="arrayType"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute default="false" name="persistent" type="xs:boolean"/>
+		<xs:attribute default="true" name="forMatching" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="expresionType">
+		<xs:sequence>
+			<xs:element name="varName" type="xs:string"/>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="varType" type="xs:string"/>
+					<xs:choice>
+						<xs:element name="value" type="xs:string"/>
+						<xs:element name="fields" type="fieldType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:element name="array" type="arrayType"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute default="false" name="persistent" type="xs:boolean"/>
+		<xs:attribute default="true" name="forMatching" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:complexType name="fieldType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="1" name="field" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="timeVariableType">
+		<xs:sequence>
+			<xs:element name="varName" type="xs:string"/>
+			<xs:element fixed="TimeVariable" name="varType" type="xs:string"/>
+			<xs:element minOccurs="0" name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="logicalOperatorType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="and|or"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TimeExpression">
+		<xs:sequence>
+			<xs:element name="time" type="timeVariableType"/>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:choice>
+					<xs:element name="plusTime" type="timeVariableType"/>
+					<xs:element name="minusTime" type="timeVariableType"/>
+					<xs:element name="plus" type="xs:decimal"/>
+					<xs:element name="minus" type="xs:decimal"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimeRelation">
+		<xs:sequence>
+			<xs:element name="timeVar1" type="TimeExpression"/>
+			<xs:element name="timeVar2" type="TimeExpression"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="varRelationType">
+		<xs:sequence>
+			<xs:element name="operand1" type="operandType"/>
+			<xs:element name="operand2" type="operandType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="relationalPredicateType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="equal" type="varRelationType"/>
+				<xs:element name="notEqualTo" type="varRelationType"/>
+				<xs:element name="lessThan" type="varRelationType"/>
+				<xs:element name="greaterThan" type="varRelationType"/>
+				<xs:element name="lessThanEqualTo" type="varRelationType"/>
+				<xs:element name="greaterThanEqualTo" type="varRelationType"/>
+			</xs:choice>
+			<xs:element name="timeVar" type="timeVariableType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="operandType">
+		<xs:choice>
+			<xs:element name="operationCall" type="operationCallType"/>
+			<xs:element name="expresion" type="expresionType"/>
+			<xs:element name="constant" type="constantType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="operationCallType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element minOccurs="0" name="partner" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="expresion" type="expresionType"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="operationCall" type="operationCallType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="constantType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arrayType">
+		<xs:sequence>
+			<xs:element name="type" type="xs:string"/>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="value" type="arrayValueType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arrayValueType">
+		<xs:sequence>
+			<xs:element name="indexValue" type="xs:string"/>
+			<xs:element name="cellValue" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fluentVariableConstraintType">
+		<xs:sequence minOccurs="0">
+			<xs:element maxOccurs="unbounded" name="constraint" type="relationalPredicateType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="constrainedPredicatesSubformulaType">
+		<xs:sequence>
+			<xs:element name="constrainedPredicates">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="predicate" type="predicateType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="constraints">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="constraint" type="relationalPredicateType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute default="false" name="negated" type="xs:boolean"/>
+	</xs:complexType>
+</xs:schema>

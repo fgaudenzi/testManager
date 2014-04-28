@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://testing.cumulus.eu" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://testing.cumulus.eu" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://testing.cumulus.eu">
+            <xs:element name="requestCertificate_Testing">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="CertificationModel" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="requestCertificate_TestingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPropertyAndTOCsTesting">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPropertyAndTOCsTestingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCertificationModelsTesting">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="TOC_ID" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCertificationModelsTestingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addCm_Testing">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="CM" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addCm_TestingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addCm_TestingResponse">
+    <wsdl:part name="parameters" element="xsd:addCm_TestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestCertificate_TestingRequest">
+    <wsdl:part name="parameters" element="xsd:requestCertificate_Testing">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPropertyAndTOCsTestingResponse">
+    <wsdl:part name="parameters" element="xsd:getPropertyAndTOCsTestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCertificationModelsTestingRequest">
+    <wsdl:part name="parameters" element="xsd:getCertificationModelsTesting">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPropertyAndTOCsTestingRequest">
+    <wsdl:part name="parameters" element="xsd:getPropertyAndTOCsTesting">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCm_TestingRequest">
+    <wsdl:part name="parameters" element="xsd:addCm_Testing">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestCertificate_TestingResponse">
+    <wsdl:part name="parameters" element="xsd:requestCertificate_TestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCertificationModelsTestingResponse">
+    <wsdl:part name="parameters" element="xsd:getCertificationModelsTestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TestingAPIPortType">
+    <wsdl:operation name="getCertificationModelsTesting">
+      <wsdl:input message="xsd:getCertificationModelsTestingRequest" wsaw:Action="urn:getCertificationModelsTesting">
+    </wsdl:input>
+      <wsdl:output message="xsd:getCertificationModelsTestingResponse" wsaw:Action="urn:getCertificationModelsTestingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCm_Testing">
+      <wsdl:input message="xsd:addCm_TestingRequest" wsaw:Action="urn:addCm_Testing">
+    </wsdl:input>
+      <wsdl:output message="xsd:addCm_TestingResponse" wsaw:Action="urn:addCm_TestingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPropertyAndTOCsTesting">
+      <wsdl:input message="xsd:getPropertyAndTOCsTestingRequest" wsaw:Action="urn:getPropertyAndTOCsTesting">
+    </wsdl:input>
+      <wsdl:output message="xsd:getPropertyAndTOCsTestingResponse" wsaw:Action="urn:getPropertyAndTOCsTestingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestCertificate_Testing">
+      <wsdl:input message="xsd:requestCertificate_TestingRequest" wsaw:Action="urn:requestCertificate_Testing">
+    </wsdl:input>
+      <wsdl:output message="xsd:requestCertificate_TestingResponse" wsaw:Action="urn:requestCertificate_TestingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TestingAPISoap12Binding" type="xsd:TestingAPIPortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCertificationModelsTesting">
+      <soap12:operation soapAction="urn:getCertificationModelsTesting" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCm_Testing">
+      <soap12:operation soapAction="urn:addCm_Testing" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPropertyAndTOCsTesting">
+      <soap12:operation soapAction="urn:getPropertyAndTOCsTesting" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestCertificate_Testing">
+      <soap12:operation soapAction="urn:requestCertificate_Testing" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TestingAPISoap11Binding" type="xsd:TestingAPIPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getCertificationModelsTesting">
+      <soap:operation soapAction="urn:getCertificationModelsTesting" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCm_Testing">
+      <soap:operation soapAction="urn:addCm_Testing" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPropertyAndTOCsTesting">
+      <soap:operation soapAction="urn:getPropertyAndTOCsTesting" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestCertificate_Testing">
+      <soap:operation soapAction="urn:requestCertificate_Testing" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TestingAPIHttpBinding" type="xsd:TestingAPIPortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="getCertificationModelsTesting">
+      <http:operation location="getCertificationModelsTesting"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCm_Testing">
+      <http:operation location="addCm_Testing"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPropertyAndTOCsTesting">
+      <http:operation location="getPropertyAndTOCsTesting"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="requestCertificate_Testing">
+      <http:operation location="requestCertificate_Testing"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TestingAPI">
+    <wsdl:port name="TestingAPIHttpSoap12Endpoint" binding="xsd:TestingAPISoap12Binding">
+      <soap12:address location="http://localhost:8080/axis2/services/TestingAPI"/>
+    </wsdl:port>
+    <wsdl:port name="TestingAPIHttpSoap11Endpoint" binding="xsd:TestingAPISoap11Binding">
+      <soap:address location="http://localhost:8080/axis2/services/TestingAPI"/>
+    </wsdl:port>
+    <wsdl:port name="TestingAPIHttpEndpoint" binding="xsd:TestingAPIHttpBinding">
+      <http:address location="http://localhost:8080/axis2/services/TestingAPI"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
