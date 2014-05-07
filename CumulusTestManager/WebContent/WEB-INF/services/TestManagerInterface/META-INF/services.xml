@@ -1,33 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- This file was auto-generated from WSDL -->
-<!-- by the Apache Axis2 version: 1.6.2  Built on : Apr 17, 2012 (05:33:49 IST) -->
-<serviceGroup>
-    <service name="TestManagerInterface">
-        <messageReceivers>
-            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="eu.cumulus.soapInterface.TestManagerInterfaceMessageReceiverInOut"/>
-        </messageReceivers>
-        <parameter name="ServiceClass">eu.cumulus.soapInterface.TestManagerInterfaceSkeleton</parameter>
-        <parameter name="useOriginalwsdl">true</parameter>
-        <parameter name="modifyUserWSDLPortAddress">true</parameter>
-        <operation name="deleteCm_Testing" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://testingpkg.cumulus.eu">
-            <actionMapping>\"\"</actionMapping>
-            <outputActionMapping>urn:deleteCm_TestingResponse</outputActionMapping>
-        </operation>
-        <operation name="addCm_Testing" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://testingpkg.cumulus.eu">
-            <actionMapping>\"\"</actionMapping>
-            <outputActionMapping>urn:addCm_TestingResponse</outputActionMapping>
-        </operation>
-        <operation name="getCertificationModelsTesting" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://testingpkg.cumulus.eu">
-            <actionMapping>\"\"</actionMapping>
-            <outputActionMapping>urn:getCertificationModelsTestingResponse</outputActionMapping>
-        </operation>
-        <operation name="getPropertyAndTOCsTesting" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://testingpkg.cumulus.eu">
-            <actionMapping>\"\"</actionMapping>
-            <outputActionMapping>urn:getPropertyAndTOCsTestingResponse</outputActionMapping>
-        </operation>
-        <operation name="requestCertificate_Testing" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://testingpkg.cumulus.eu">
-            <actionMapping>\"\"</actionMapping>
-            <outputActionMapping>urn:requestCertificate_TestingResponse</outputActionMapping>
-        </operation>
-    </service>
-</serviceGroup>
+<service name="TestManagerInterface" >
+	<Description>
+		Interface with the Cumulus Framework
+	</Description>
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+	</messageReceivers>
+	<parameter name="ServiceClass" locked="false">eu.cumulus.soapInterface.TestManagerInterfaceSkeleton</parameter>
+</service>

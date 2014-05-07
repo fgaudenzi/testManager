@@ -3,6 +3,7 @@ package eu.cumulus.utilities;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -307,12 +308,12 @@ public class ConverterDB_XML {
 	 * @return
 	 */
 	public static String getProperyAndTocs(
-			HashMap<Property, ArrayList<Toc>> input) {
+			HashMap<Property, HashSet<Toc>> input) {
 		eu.cumulus.certModelXML.PropertiesAndTocs.PropertiesAndTocsType root = new eu.cumulus.certModelXML.PropertiesAndTocs.PropertiesAndTocsType();
-		for (Map.Entry<Property, ArrayList<Toc>> entry : input.entrySet()) {
+		for (Map.Entry<Property, HashSet<Toc>> entry : input.entrySet()) {
 			eu.cumulus.certModelXML.PropertiesAndTocs.PropertyType p = new eu.cumulus.certModelXML.PropertiesAndTocs.PropertyType();
 			p.setCategory(entry.getKey().getClass_());
-			ArrayList<Toc> ta = entry.getValue();
+			HashSet<Toc> ta = entry.getValue();
 			for (Toc t : ta) {
 				eu.cumulus.certModelXML.PropertiesAndTocs.TargetOfCertificationType tt = new eu.cumulus.certModelXML.PropertiesAndTocs.TargetOfCertificationType();
 				tt.setID(t.getId());

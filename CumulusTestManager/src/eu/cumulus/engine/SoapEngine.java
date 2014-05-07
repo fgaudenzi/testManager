@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -42,7 +43,7 @@ public class SoapEngine {
 		cmR = manager.find(eu.cumulus.database.CertificationModel.class, cmID);
 		System.out.println("\n \n " + cmR);
 		if (cmR == null) {
-			return true;
+			return false;
 		}
 		try {
 			manager.getTransaction().begin();
@@ -63,8 +64,11 @@ public class SoapEngine {
 	 */
 	public static boolean createCM(String CM) {
 
+		//XML contains the Certification Model as a String
 		String XML = CM;
 
+		
+		//TODO context is the package containing the objectfactory
 		String context = "eu.cumulus.certModelXML";
 		eu.cumulus.utilities.JaxbUnmarshal unmarshall = new eu.cumulus.utilities.JaxbUnmarshal(
 				XML, context);
@@ -73,13 +77,32 @@ public class SoapEngine {
 		TestBasedCertificationModelType tbcm = (TestBasedCertificationModelType) obj
 				.getValue();
 		eu.cumulus.database.CertificationModel cmR = null;
+		
+		
+		//Convert the XML objects to JPA classes
 		cmR = ConverterDB_XML.fromXML(tbcm);
-		System.out.println(cmR);
+		
+		//System.out.println(cmR);
+		
+	    //TODO init of entity manager factory	
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("AxisTest");
 		// createEntityManagerFactory(“AxisTest”);
 		System.out.println("CM con ID:" + cmR.getId());
 		EntityManager manager = factory.createEntityManager();
+		
+		eu.cumulus.database.CertificationModel checker=manager.find(eu.cumulus.database.CertificationModel.class, cmR.getId());
+		
+		//TODO this method could worl for update with few changes
+		
+		//if cmR already exists then return false
+		if(checker!=null){
+			manager.close();
+			return false;
+	    //otherwise add to database		
+		}else{
+		
+		
 		manager.getTransaction().begin();
 		// manager.flush();
 		manager.merge(cmR);
@@ -88,6 +111,7 @@ public class SoapEngine {
 		//
 		manager.close();
 		return true;
+		}
 	}
 
 	/**
@@ -133,11 +157,12 @@ public class SoapEngine {
 		System.out.println(ll.size());
 		Iterator<eu.cumulus.database.CertificationModel> it = ll.iterator();
 		eu.cumulus.database.CertificationModel cmR = null;
-		HashMap<Property, ArrayList<Toc>> result = new HashMap<Property, ArrayList<Toc>>();
+		//HashMap<Property, ArrayList<Toc>> result = new HashMap<Property, ArrayList<Toc>>();
+		HashMap<Property, HashSet<Toc>> result = new HashMap<Property, HashSet<Toc>>();
 		while (it.hasNext()) {
 			cmR = it.next();
 			if (!result.containsKey(cmR.getPropertyBean())) {
-				result.put(cmR.getPropertyBean(), new ArrayList<Toc>());
+				result.put(cmR.getPropertyBean(), new HashSet<Toc>());
 			}
 
 			System.out.println(cmR.getId());
@@ -148,7 +173,6 @@ public class SoapEngine {
 			// result.add(tbcm.toString());
 		}
 		manager.close();
-
 		return eu.cumulus.utilities.ConverterDB_XML.getProperyAndTocs(result);
 	}
 

@@ -46,6 +46,32 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="getCertificates_Testing">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="certID" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCertificates_TestingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCertificatesSummary_Testing">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getCertificatesSummary_TestingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="deleteCm_Testing">
                 <xs:complexType>
                     <xs:sequence>
@@ -76,36 +102,28 @@
             </xs:element>
         </xs:schema>
   </wsdl:types>
-  <wsdl:message name="deleteCm_TestingResponse">
-    <wsdl:part name="parameters" element="ns:deleteCm_TestingResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="requestCertificate_TestingResponse">
-    <wsdl:part name="parameters" element="ns:requestCertificate_TestingResponse">
+  <wsdl:message name="getCertificationModelsTestingResponse">
+    <wsdl:part name="parameters" element="ns:getCertificationModelsTestingResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="deleteCm_TestingRequest">
     <wsdl:part name="parameters" element="ns:deleteCm_Testing">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getCertificationModelsTestingResponse">
-    <wsdl:part name="parameters" element="ns:getCertificationModelsTestingResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getPropertyAndTOCsTestingRequest">
-    <wsdl:part name="parameters" element="ns:getPropertyAndTOCsTesting">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="addCm_TestingRequest">
     <wsdl:part name="parameters" element="ns:addCm_Testing">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getPropertyAndTOCsTestingResponse">
-    <wsdl:part name="parameters" element="ns:getPropertyAndTOCsTestingResponse">
+  <wsdl:message name="getCertificates_TestingResponse">
+    <wsdl:part name="parameters" element="ns:getCertificates_TestingResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getCertificationModelsTestingRequest">
     <wsdl:part name="parameters" element="ns:getCertificationModelsTesting">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCertificatesSummary_TestingRequest">
+    <wsdl:part name="parameters" element="ns:getCertificatesSummary_Testing">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addCm_TestingResponse">
@@ -116,6 +134,30 @@
     <wsdl:part name="parameters" element="ns:requestCertificate_Testing">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="getCertificates_TestingRequest">
+    <wsdl:part name="parameters" element="ns:getCertificates_Testing">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCm_TestingResponse">
+    <wsdl:part name="parameters" element="ns:deleteCm_TestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestCertificate_TestingResponse">
+    <wsdl:part name="parameters" element="ns:requestCertificate_TestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPropertyAndTOCsTestingRequest">
+    <wsdl:part name="parameters" element="ns:getPropertyAndTOCsTesting">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPropertyAndTOCsTestingResponse">
+    <wsdl:part name="parameters" element="ns:getPropertyAndTOCsTestingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCertificatesSummary_TestingResponse">
+    <wsdl:part name="parameters" element="ns:getCertificatesSummary_TestingResponse">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="TestManagerInterfacePortType">
     <wsdl:operation name="getCertificationModelsTesting">
       <wsdl:input message="ns:getCertificationModelsTestingRequest" wsaw:Action="urn:getCertificationModelsTesting">
@@ -123,10 +165,22 @@
       <wsdl:output message="ns:getCertificationModelsTestingResponse" wsaw:Action="urn:getCertificationModelsTestingResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getCertificatesSummary_Testing">
+      <wsdl:input message="ns:getCertificatesSummary_TestingRequest" wsaw:Action="urn:getCertificatesSummary_Testing">
+    </wsdl:input>
+      <wsdl:output message="ns:getCertificatesSummary_TestingResponse" wsaw:Action="urn:getCertificatesSummary_TestingResponse">
+    </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addCm_Testing">
       <wsdl:input message="ns:addCm_TestingRequest" wsaw:Action="urn:addCm_Testing">
     </wsdl:input>
       <wsdl:output message="ns:addCm_TestingResponse" wsaw:Action="urn:addCm_TestingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificates_Testing">
+      <wsdl:input message="ns:getCertificates_TestingRequest" wsaw:Action="urn:getCertificates_Testing">
+    </wsdl:input>
+      <wsdl:output message="ns:getCertificates_TestingResponse" wsaw:Action="urn:getCertificates_TestingResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getPropertyAndTOCsTesting">
@@ -159,8 +213,26 @@
         <soap12:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getCertificatesSummary_Testing">
+      <soap12:operation soapAction="urn:getCertificatesSummary_Testing" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addCm_Testing">
       <soap12:operation soapAction="urn:addCm_Testing" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificates_Testing">
+      <soap12:operation soapAction="urn:getCertificates_Testing" style="document"/>
       <wsdl:input>
         <soap12:body use="literal"/>
       </wsdl:input>
@@ -207,8 +279,26 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getCertificatesSummary_Testing">
+      <soap:operation soapAction="urn:getCertificatesSummary_Testing" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addCm_Testing">
       <soap:operation soapAction="urn:addCm_Testing" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificates_Testing">
+      <soap:operation soapAction="urn:getCertificates_Testing" style="document"/>
       <wsdl:input>
         <soap:body use="literal"/>
       </wsdl:input>
@@ -255,8 +345,26 @@
         <mime:content part="parameters" type="application/xml"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getCertificatesSummary_Testing">
+      <http:operation location="getCertificatesSummary_Testing"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="addCm_Testing">
       <http:operation location="addCm_Testing"/>
+      <wsdl:input>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="parameters" type="application/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCertificates_Testing">
+      <http:operation location="getCertificates_Testing"/>
       <wsdl:input>
         <mime:content part="parameters" type="application/xml"/>
       </wsdl:input>

@@ -162,33 +162,7 @@
     </xs:complexType>
     <xs:complexType name="lifeCycleType">
         <xs:sequence>
-            <xs:element name="LifeCycleStates">
-                <xs:complexType>
-                    <xs:sequence maxOccurs="unbounded">
-                        <xs:element name="LifeCycleId" type="xs:ID"/>
-                        <xs:element name="LifeCycleState">
-                            <xs:simpleType>
-                                <xs:restriction base="xs:string">
-                                    <xs:enumeration value="NOT_ISSUED"/>
-                                    <xs:enumeration value="ISSUED"/>
-                                    <xs:enumeration value="SUSPENDED"/>
-                                    <xs:enumeration value="REVOKED"/>
-                                    <xs:enumeration value="EXPIRED"/>
-                                </xs:restriction>
-                            </xs:simpleType>
-                        </xs:element>
-                        <xs:element name="LifeCycleTransitions">
-                            <xs:complexType>
-                                <xs:sequence maxOccurs="unbounded">
-                                    <xs:element name="lifeCycleTransition"
-                                        type="lifeCycleTransitionType"> </xs:element>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                    <xs:attribute name="NumberOfStates" use="required" type="xs:integer"/>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="LifeCycleStates" type="LifeCycleStates"> </xs:element>
         </xs:sequence>
         <xs:attribute name="InitialState" use="required" type="xs:string" fixed="NOT_ISSUED"/>
     </xs:complexType>
@@ -481,5 +455,35 @@
         <xs:attribute name="TrafficType" type="xs:string" use="required"/>
         <xs:attribute name="ThresholdUnit" type="xs:string" use="required"/>
         <xs:attribute name="ThresholdValue" type="xs:float" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="LifeCycleStates">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="singleState" type="SingleLifeState"/>
+        </xs:sequence>
+        <xs:attribute name="NumberOfStates" use="required" type="xs:integer"/>
+    </xs:complexType>
+    <xs:complexType name="SingleLifeState">
+        <xs:sequence>
+            <xs:element name="LifeCycleState">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NOT_ISSUED"/>
+                        <xs:enumeration value="ISSUED"/>
+                        <xs:enumeration value="SUSPENDED"/>
+                        <xs:enumeration value="REVOKED"/>
+                        <xs:enumeration value="EXPIRED"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="LifeCycleId" type="xs:ID"/>
+            <xs:element name="LifeCycleTransitions">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="lifeCycleTransition" type="lifeCycleTransitionType">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
 </xs:schema>

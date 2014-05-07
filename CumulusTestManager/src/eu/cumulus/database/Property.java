@@ -123,6 +123,9 @@ public class Property implements Serializable {
 		p.setVocabulary(vocabulary);
 		eu.cumulus.certModelXML.PropertyType pt = new eu.cumulus.certModelXML.PropertyType();
 		pt.setClazz(class_);
+		eu.cumulus.certModelXML.PropertyType.PropertyPerformance pp=new eu.cumulus.certModelXML.PropertyType.PropertyPerformance();
+		pp.getPropertyPerformanceRow().add(new eu.cumulus.certModelXML.PropertyType.PropertyPerformance.PropertyPerformanceRow());
+		pt.setPropertyPerformance(pp);
 		p.setSProperty(pt);
 		return p;
 	}

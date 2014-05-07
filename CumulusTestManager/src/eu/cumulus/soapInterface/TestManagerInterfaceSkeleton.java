@@ -95,5 +95,38 @@ public class TestManagerInterfaceSkeleton implements
 				.submitCertificate(param.getCertificationModel()));
 		return response;
 	}
+	
+    /**
+     * Auto generated method signature
+     * 
+                                 * @param getCertificatesSummary_Testing6 
+         * @return getCertificatesSummary_TestingResponse7 
+     */
+    
+             public eu.cumulus.soapResponse.GetCertificatesSummary_TestingResponse getCertificatesSummary_Testing
+              (
+              eu.cumulus.soapResponse.GetCertificatesSummary_Testing getCertificatesSummary_Testing6
+              )
+        {
+            //TODO : fill this with the necessary business logic
+            throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#getCertificatesSummary_Testing");
+    }
+             
+             /**
+              * Auto generated method signature
+              * 
+                                          * @param getCertificates_Testing0 
+                  * @return getCertificates_TestingResponse1 
+              */
+             
+                      public eu.cumulus.soapResponse.GetCertificates_TestingResponse getCertificates_Testing
+                       (
+                       eu.cumulus.soapResponse.GetCertificates_Testing getCertificates_Testing0
+                       )
+                 {
+                     //TODO : fill this with the necessary business logic
+                     throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#getCertificates_Testing");
+             }
+          
 
 }

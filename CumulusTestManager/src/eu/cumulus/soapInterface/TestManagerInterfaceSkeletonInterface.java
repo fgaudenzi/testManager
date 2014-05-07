@@ -56,5 +56,36 @@ public interface TestManagerInterfaceSkeletonInterface {
 
 	public eu.cumulus.soapResponse.RequestCertificate_TestingResponse requestCertificate_Testing(
 			eu.cumulus.soapResponse.RequestCertificate_Testing requestCertificate_Testing);
+	
+	
+	
+    
+    /**
+     * Auto generated method signature
+     * 
+                                * @param getCertificatesSummary_Testing
+     */
+
+    
+            public eu.cumulus.soapResponse.GetCertificatesSummary_TestingResponse getCertificatesSummary_Testing
+            (
+            		eu.cumulus.soapResponse.GetCertificatesSummary_Testing getCertificatesSummary_Testing
+             )
+        ;
+            
+            /**
+             * Auto generated method signature
+             * 
+                                        * @param getCertificates_Testing
+             */
+
+            
+                    public eu.cumulus.soapResponse.GetCertificates_TestingResponse getCertificates_Testing
+                    (
+                      eu.cumulus.soapResponse.GetCertificates_Testing getCertificates_Testing
+                     )
+                ;
+            
+    
 
 }

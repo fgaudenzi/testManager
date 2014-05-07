@@ -15,11 +15,7 @@
             </xs:element>
             <xs:element name="getCertificates_Testing">
                 <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="SecProp" nillable="true" type="xs:string"/>
-                        <xs:element minOccurs="0" name="TOC" nillable="true" type="xs:string"/>
-                        <xs:element minOccurs="0" name="certStatus" nillable="true" type="xs:string"/>
-                    </xs:sequence>
+                    <xs:sequence/>
                 </xs:complexType>
             </xs:element>
             <xs:element name="getCertificates_TestingResponse">

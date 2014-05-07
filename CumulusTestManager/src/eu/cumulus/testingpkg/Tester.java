@@ -29,49 +29,66 @@ public class Tester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// addCM();
-		// deleteCM("TEST000001");
-		// findPerTandP("ID001","http://cumulus-project.eu/security-properties#IAM:identity-assurance:user-authentication-and-identity-assurance-levelTest");
+		 //addCM();
+		 //deleteCM("TEST000006");
+		//findPerTandP("ID001","http://cumulus-project.eu/security-properties#IAM:identity-assurance:user-authentication-and-identity-assurance-levelTest");
 		// createCC("TEST000006");
 		// getCertificate(1);
-		getCeertificates();
+		//getCeertificates();
+		//getPropertiesAndToc();
+		checkXML_CM();
+	}
+
+	private static void checkXML_CM() {
+		String filePath = "/Users/filippogaudenzi/Documents/workspace/CumulusTestManager/XML_Repository/testerCM.xml";
+		String XML = "";
+		try {
+			XML = Tester
+					.getStringFromInputStream(new FileInputStream(filePath));
+		
+			// TODO Auto-generated catch block
+			
+		
+		String context = "eu.cumulus.certModelXML";
+		eu.cumulus.utilities.JaxbUnmarshal unmarshall = new eu.cumulus.utilities.JaxbUnmarshal(
+				XML, context);
+		} catch (Exception e) {
+		System.out.println("ERRORE");
+		e.printStackTrace();
+		}
+	}
+
+	private static void getPropertiesAndToc() {
+		System.out.println("RESULT PROPERTIES AND TOC: "+eu.cumulus.engine.SoapEngine.getPropertiesAndTocs());
 	}
 
 	private static void getCeertificates() {
 		System.out.println(eu.cumulus.engine.SoapEngine
 				.getSummaryCertificates());
-
 	}
 
 	private static void getCertificate(int i) {
 		System.out.println(eu.cumulus.engine.SoapEngine.getCertificate(i));
-
 	}
 
 	private static void createCC(String string) {
 		System.out.println(eu.cumulus.engine.SoapEngine
 				.submitCertificate(string));
-
 	}
 
 	private static void findPerTandP(String t, String p) {
-
 		ArrayList<String> ar = eu.cumulus.engine.SoapEngine
 				.findCMbyPropertyandTOC(p, t);
 		for (String cm : ar) {
 			System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n" + cm);
-
 		}
 	}
 
 	private static String getStringFromInputStream(InputStream is) {
-
 		BufferedReader br = null;
 		StringBuilder sb = new StringBuilder();
-
 		String line;
 		try {
-
 			br = new BufferedReader(new InputStreamReader(is));
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
@@ -103,11 +120,11 @@ public class Tester {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		eu.cumulus.engine.SoapEngine.createCM(XML);
+		System.out.println("RESULT CREATION: "+eu.cumulus.engine.SoapEngine.createCM(XML));
 	}
 
 	public static void deleteCM(String id) {
-		eu.cumulus.engine.SoapEngine.deleteCM(id);
+		System.out.println("RESULT DELETE CM: "+eu.cumulus.engine.SoapEngine.deleteCM(id));
 	}
 
 	public static void getPropertyandTocs() {
@@ -130,9 +147,9 @@ public class Tester {
 			// result.add(tbcm.toString());
 		}
 		manager.close();
-		System.out.println("\n\n\n\n\n\n "
-				+ eu.cumulus.utilities.ConverterDB_XML
-						.getProperyAndTocs(result));
+//		System.out.println("\n\n\n\n\n\n "
+//				+ eu.cumulus.utilities.ConverterDB_XML
+//						.getProperyAndTocs(result));
 	}
 
 }

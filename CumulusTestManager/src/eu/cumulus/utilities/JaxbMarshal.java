@@ -39,6 +39,9 @@ public class JaxbMarshal {
 			marshaller = jaxbContext.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
 					new Boolean(true));
+			
+			//TODO specify xml schema
+			//marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://es.indra.transporte.configuration StationNetwork.xsd");
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
 
 			marshaller.marshal(object, os);
