@@ -8,11 +8,16 @@ package eu.cumulus.soapInterface;
 
 import java.util.ArrayList;
 
+import eu.cumulus.soapResponse.GetCertificate_Testing;
+import eu.cumulus.soapResponse.GetCertificate_TestingResponse;
+import eu.cumulus.soapResponse.GetCertificates_Testing;
+import eu.cumulus.soapResponse.GetCertificates_TestingResponse;
+
 /**
  * TestManagerInterfaceSkeleton java skeleton for the axisService
  */
 public class TestManagerInterfaceSkeleton implements
-		TestManagerInterfaceSkeletonInterface {
+TestManagerInterfaceSkeletonInterface {
 
 	/**
 	 * Auto generated method signature
@@ -56,7 +61,6 @@ public class TestManagerInterfaceSkeleton implements
 	public eu.cumulus.soapResponse.GetCertificationModelsTestingResponse getCertificationModelsTesting(
 			eu.cumulus.soapResponse.GetCertificationModelsTesting CMbyPandT) {
 		eu.cumulus.soapResponse.GetCertificationModelsTestingResponse response = new eu.cumulus.soapResponse.GetCertificationModelsTestingResponse();
-
 		ArrayList<String> arr = eu.cumulus.engine.SoapEngine
 				.findCMbyPropertyandTOC(CMbyPandT.getCategory(),
 						CMbyPandT.getTOC_ID());
@@ -107,10 +111,11 @@ public class TestManagerInterfaceSkeleton implements
               (
               eu.cumulus.soapResponse.GetCertificatesSummary_Testing getCertificatesSummary_Testing6
               )
-        {
-            //TODO : fill this with the necessary business logic
-            throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#getCertificatesSummary_Testing");
-    }
+        {   
+            	 eu.cumulus.soapResponse.GetCertificatesSummary_TestingResponse  result=new eu.cumulus.soapResponse.GetCertificatesSummary_TestingResponse();
+            result.set_return(eu.cumulus.engine.SoapEngine.getSummaryCertificates());
+            return result;
+        }
              
              /**
               * Auto generated method signature
@@ -119,14 +124,25 @@ public class TestManagerInterfaceSkeleton implements
                   * @return getCertificates_TestingResponse1 
               */
              
-                      public eu.cumulus.soapResponse.GetCertificates_TestingResponse getCertificates_Testing
+                      public eu.cumulus.soapResponse.GetCertificate_TestingResponse getCertificate_Testing
                        (
-                       eu.cumulus.soapResponse.GetCertificates_Testing getCertificates_Testing0
+                       eu.cumulus.soapResponse.GetCertificate_Testing param
                        )
                  {
                      //TODO : fill this with the necessary business logic
-                     throw new  java.lang.UnsupportedOperationException("Please implement " + this.getClass().getName() + "#getCertificates_Testing");
+                    eu.cumulus.soapResponse.GetCertificate_TestingResponse result=new eu.cumulus.soapResponse.GetCertificate_TestingResponse();
+                    result.set_return(eu.cumulus.engine.SoapEngine.getCertificate(param.getCertID()));
+                    return result;
              }
-          
+
+			@Override
+			public GetCertificates_TestingResponse[] getCertificates_Testing(
+					) {
+				// TODO Auto-generated method stub
+				GetCertificates_TestingResponse[] array=eu.cumulus.engine.SoapEngine.getCertificatesAndCM();
+				return array;
+			}
+
+	
 
 }

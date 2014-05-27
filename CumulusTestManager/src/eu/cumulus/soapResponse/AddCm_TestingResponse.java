@@ -23,17 +23,9 @@ public class AddCm_TestingResponse implements
 
 	protected boolean local_return;
 
-	/*
-	 * This tracker boolean wil be used to detect whether the user called the
-	 * set method for this attribute. It will be used to determine whether to
-	 * include this field in the serialized XML
-	 */
-	protected boolean local_returnTracker = false;
 
-	public boolean is_returnSpecified() {
-		return local_returnTracker;
-	}
 
+	
 	/**
 	 * Auto generated getter method
 	 * 
@@ -51,8 +43,7 @@ public class AddCm_TestingResponse implements
 	 */
 	public void set_return(boolean param) {
 
-		// setting primitive attribute tracker to true
-		local_returnTracker = true;
+		
 
 		this.local_return = param;
 
@@ -111,7 +102,7 @@ public class AddCm_TestingResponse implements
 			}
 
 		}
-		if (local_returnTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "return", xmlWriter);
 
@@ -127,7 +118,7 @@ public class AddCm_TestingResponse implements
 			}
 
 			xmlWriter.writeEndElement();
-		}
+		
 		xmlWriter.writeEndElement();
 
 	}
@@ -340,13 +331,13 @@ public class AddCm_TestingResponse implements
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (local_returnTracker) {
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "return"));
 
 			elementList.add(org.apache.axis2.databinding.utils.ConverterUtil
 					.convertToString(local_return));
-		}
+		
 
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());

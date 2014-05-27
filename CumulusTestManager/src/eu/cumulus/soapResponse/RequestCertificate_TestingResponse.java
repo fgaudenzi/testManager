@@ -14,6 +14,11 @@ package eu.cumulus.soapResponse;
 public class RequestCertificate_TestingResponse implements
 		org.apache.axis2.databinding.ADBBean {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName(
 			"http://testingpkg.cumulus.eu",
 			"requestCertificate_TestingResponse", "ns1");
@@ -24,16 +29,9 @@ public class RequestCertificate_TestingResponse implements
 
 	protected int local_return;
 
-	/*
-	 * This tracker boolean wil be used to detect whether the user called the
-	 * set method for this attribute. It will be used to determine whether to
-	 * include this field in the serialized XML
-	 */
-	protected boolean local_returnTracker = false;
+	
 
-	public boolean is_returnSpecified() {
-		return local_returnTracker;
-	}
+	
 
 	/**
 	 * Auto generated getter method
@@ -52,8 +50,7 @@ public class RequestCertificate_TestingResponse implements
 	 */
 	public void set_return(int param) {
 
-		// setting primitive attribute tracker to true
-		local_returnTracker = param != java.lang.Integer.MIN_VALUE;
+	
 
 		this.local_return = param;
 
@@ -115,7 +112,7 @@ public class RequestCertificate_TestingResponse implements
 			}
 
 		}
-		if (local_returnTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "return", xmlWriter);
 
@@ -131,7 +128,7 @@ public class RequestCertificate_TestingResponse implements
 			}
 
 			xmlWriter.writeEndElement();
-		}
+		
 		xmlWriter.writeEndElement();
 
 	}
@@ -344,13 +341,13 @@ public class RequestCertificate_TestingResponse implements
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (local_returnTracker) {
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "return"));
 
 			elementList.add(org.apache.axis2.databinding.utils.ConverterUtil
 					.convertToString(local_return));
-		}
+		
 
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());

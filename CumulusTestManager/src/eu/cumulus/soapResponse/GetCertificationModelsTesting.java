@@ -29,11 +29,9 @@ public class GetCertificationModelsTesting implements
 	 * set method for this attribute. It will be used to determine whether to
 	 * include this field in the serialized XML
 	 */
-	protected boolean localCategoryTracker = false;
+	
 
-	public boolean isCategorySpecified() {
-		return localCategoryTracker;
-	}
+	
 
 	/**
 	 * Auto generated getter method
@@ -51,7 +49,7 @@ public class GetCertificationModelsTesting implements
 	 *            Category
 	 */
 	public void setCategory(java.lang.String param) {
-		localCategoryTracker = true;
+		
 
 		this.localCategory = param;
 
@@ -63,16 +61,8 @@ public class GetCertificationModelsTesting implements
 
 	protected java.lang.String localTOC_ID;
 
-	/*
-	 * This tracker boolean wil be used to detect whether the user called the
-	 * set method for this attribute. It will be used to determine whether to
-	 * include this field in the serialized XML
-	 */
-	protected boolean localTOC_IDTracker = false;
-
-	public boolean isTOC_IDSpecified() {
-		return localTOC_IDTracker;
-	}
+	
+	
 
 	/**
 	 * Auto generated getter method
@@ -90,8 +80,7 @@ public class GetCertificationModelsTesting implements
 	 *            TOC_ID
 	 */
 	public void setTOC_ID(java.lang.String param) {
-		localTOC_IDTracker = true;
-
+		
 		this.localTOC_ID = param;
 
 	}
@@ -150,7 +139,7 @@ public class GetCertificationModelsTesting implements
 			}
 
 		}
-		if (localCategoryTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "Category", xmlWriter);
 
@@ -165,11 +154,11 @@ public class GetCertificationModelsTesting implements
 
 				xmlWriter.writeCharacters(localCategory);
 
-			}
+			
 
 			xmlWriter.writeEndElement();
 		}
-		if (localTOC_IDTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "TOC_ID", xmlWriter);
 
@@ -184,7 +173,7 @@ public class GetCertificationModelsTesting implements
 
 				xmlWriter.writeCharacters(localTOC_ID);
 
-			}
+			
 
 			xmlWriter.writeEndElement();
 		}
@@ -400,22 +389,22 @@ public class GetCertificationModelsTesting implements
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (localCategoryTracker) {
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "Category"));
 
 			elementList.add(localCategory == null ? null
 					: org.apache.axis2.databinding.utils.ConverterUtil
 							.convertToString(localCategory));
-		}
-		if (localTOC_IDTracker) {
+		
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "TOC_ID"));
 
 			elementList.add(localTOC_ID == null ? null
 					: org.apache.axis2.databinding.utils.ConverterUtil
 							.convertToString(localTOC_ID));
-		}
+		
 
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());

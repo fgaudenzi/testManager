@@ -1,14 +1,11 @@
 package eu.cumulus.engine;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,10 +14,13 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.xml.bind.JAXBElement;
 
-import sun.nio.cs.ext.EUC_CN;
 import eu.cumulus.certModelXML.TestBasedCertificationModelType;
-import eu.cumulus.database.*;
-import eu.cumulus.testingpkg.Tester;
+import eu.cumulus.database.Certificate;
+import eu.cumulus.database.CertificationModel;
+import eu.cumulus.database.Property;
+import eu.cumulus.database.Toc;
+
+import eu.cumulus.soapResponse.GetCertificate_TestingResponse;
 import eu.cumulus.utilities.ConverterDB_XML;
 
 /**
@@ -38,7 +38,6 @@ public class SoapEngine {
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("AxisTest");
 		EntityManager manager = factory.createEntityManager();
-
 		eu.cumulus.database.CertificationModel cmR = null;
 		cmR = manager.find(eu.cumulus.database.CertificationModel.class, cmID);
 		System.out.println("\n \n " + cmR);
@@ -81,7 +80,9 @@ public class SoapEngine {
 		
 		//Convert the XML objects to JPA classes
 		cmR = ConverterDB_XML.fromXML(tbcm);
-		
+		if(cmR==null){
+			return false;
+		}
 		//System.out.println(cmR);
 		
 	    //TODO init of entity manager factory	
@@ -93,7 +94,7 @@ public class SoapEngine {
 		
 		eu.cumulus.database.CertificationModel checker=manager.find(eu.cumulus.database.CertificationModel.class, cmR.getId());
 		
-		//TODO this method could worl for update with few changes
+		//TODO this method could work or update CM with few changes
 		
 		//if cmR already exists then return false
 		if(checker!=null){
@@ -197,7 +198,8 @@ public class SoapEngine {
 			cc.setInstantiationDay(new Date());
 			cc.setStatus(cm.getLifeCycleBean().getIntialState());
 			manager.getTransaction().begin();
-			manager.merge(cc);
+			manager.persist(cc);
+			//manager.merge(cc);
 			manager.getTransaction().commit();
 			// Random randomGenerator = new Random();
 			// create certificate!
@@ -251,6 +253,35 @@ public class SoapEngine {
 		eu.cumulus.utilities.JaxbMarshal jaxbm = new eu.cumulus.utilities.JaxbMarshal(
 				"eu.cumulus.certModelXML.certificationSummury");
 		return jaxbm.getMarshalledString(cst);
+	}
+
+	public static eu.cumulus.soapResponse.GetCertificates_TestingResponse[] getCertificatesAndCM() {
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("AxisTest");
+		EntityManager manager = factory.createEntityManager();
+		Query query = manager.createNamedQuery("Certificate.findAll");
+		
+		ArrayList<eu.cumulus.soapResponse.GetCertificates_TestingResponse> arrayL=new ArrayList<eu.cumulus.soapResponse.GetCertificates_TestingResponse>();
+		
+		List<eu.cumulus.database.Certificate> ll = query.getResultList();
+		
+			Iterator<eu.cumulus.database.Certificate> it_cc = ll.iterator();
+			eu.cumulus.utilities.JaxbMarshal jaxbm = new eu.cumulus.utilities.JaxbMarshal(
+						"eu.cumulus.certModelXML.certificate");
+			eu.cumulus.utilities.JaxbMarshal jaxbm1 = new eu.cumulus.utilities.JaxbMarshal(
+						"eu.cumulus.certModelXML");
+			while (it_cc.hasNext()){
+				eu.cumulus.soapResponse.GetCertificates_TestingResponse element=new eu.cumulus.soapResponse.GetCertificates_TestingResponse();
+				eu.cumulus.database.Certificate cert=it_cc.next();
+				
+				element.setCertificate(jaxbm.getMarshalledString(cert.toXMLSummurizeObject()));
+				eu.cumulus.database.CertificationModel cm=cert.getCertificationModel();
+				element.setCM(jaxbm1.getMarshalledString(cm.toXMLObject()));
+				arrayL.add(element);
+			}
+			
+	    eu.cumulus.soapResponse.GetCertificates_TestingResponse[] array=new eu.cumulus.soapResponse.GetCertificates_TestingResponse[arrayL.size()];
+		return arrayL.toArray(array);
 	}
 
 }

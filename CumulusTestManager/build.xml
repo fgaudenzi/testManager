@@ -31,7 +31,7 @@
         <available classname="org.apache.axis2.engine.AxisEngine" property="axis2.available" classpathref="axis2.class.path"/>
         <condition property="jars.ok">
             <and>
-                <isset property="stax.available"/>
+                
                 <isset property="axis2.available"/>
             </and>
         </condition>

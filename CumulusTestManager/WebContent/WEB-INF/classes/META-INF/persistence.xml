@@ -21,9 +21,6 @@
 			<property name="javax.persistence.jdbc.user" value="test_cumulus" />
 			<property name="javax.persistence.jdbc.password" value="cumulus!" />
 			
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
 		<!--	<property name="eclipselink.logging.level" value="FINE" /> -->
 		</properties>
 	</persistence-unit>

@@ -39,17 +39,17 @@
 
             if("getCertificates_Testing".equals(methodName)){
                 
-                eu.cumulus.soapResponse.GetCertificates_TestingResponse getCertificates_TestingResponse15 = null;
-	                        eu.cumulus.soapResponse.GetCertificates_Testing wrappedParam =
-                                                             (eu.cumulus.soapResponse.GetCertificates_Testing)fromOM(
+                eu.cumulus.soapResponse.GetCertificate_TestingResponse getCertificates_TestingResponse15 = null;
+	                        eu.cumulus.soapResponse.GetCertificate_Testing wrappedParam =
+                                                             (eu.cumulus.soapResponse.GetCertificate_Testing)fromOM(
                                     msgContext.getEnvelope().getBody().getFirstElement(),
-                                    eu.cumulus.soapResponse.GetCertificates_Testing.class,
+                                    eu.cumulus.soapResponse.GetCertificate_Testing.class,
                                     getEnvelopeNamespaces(msgContext.getEnvelope()));
                                                 
                                                getCertificates_TestingResponse15 =
                                                    
                                                    
-                                                         skel.getCertificates_Testing(wrappedParam)
+                                                         skel.getCertificate_Testing(wrappedParam)
                                                     ;
                                             
                                         envelope = toEnvelope(getSOAPFactory(msgContext), getCertificates_TestingResponse15, false, new javax.xml.namespace.QName("http://soapResponse.cumulus.eu",
@@ -183,12 +183,12 @@
         }
         
         //
-            private  org.apache.axiom.om.OMElement  toOM(eu.cumulus.soapResponse.GetCertificates_Testing param, boolean optimizeContent)
+            private  org.apache.axiom.om.OMElement  toOM(eu.cumulus.soapResponse.GetCertificate_Testing param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
             
                         try{
-                             return param.getOMElement(eu.cumulus.soapResponse.GetCertificates_Testing.MY_QNAME,
+                             return param.getOMElement(eu.cumulus.soapResponse.GetCertificate_Testing.MY_QNAME,
                                           org.apache.axiom.om.OMAbstractFactory.getOMFactory());
                         } catch(org.apache.axis2.databinding.ADBException e){
                             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -197,12 +197,12 @@
 
             }
         
-            private  org.apache.axiom.om.OMElement  toOM(eu.cumulus.soapResponse.GetCertificates_TestingResponse param, boolean optimizeContent)
+            private  org.apache.axiom.om.OMElement  toOM(eu.cumulus.soapResponse.GetCertificate_TestingResponse param, boolean optimizeContent)
             throws org.apache.axis2.AxisFault {
 
             
                         try{
-                             return param.getOMElement(eu.cumulus.soapResponse.GetCertificates_TestingResponse.MY_QNAME,
+                             return param.getOMElement(eu.cumulus.soapResponse.GetCertificate_TestingResponse.MY_QNAME,
                                           org.apache.axiom.om.OMAbstractFactory.getOMFactory());
                         } catch(org.apache.axis2.databinding.ADBException e){
                             throw org.apache.axis2.AxisFault.makeFault(e);
@@ -379,12 +379,12 @@
 
             }
         
-                    private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, eu.cumulus.soapResponse.GetCertificates_TestingResponse param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
+                    private  org.apache.axiom.soap.SOAPEnvelope toEnvelope(org.apache.axiom.soap.SOAPFactory factory, eu.cumulus.soapResponse.GetCertificate_TestingResponse param, boolean optimizeContent, javax.xml.namespace.QName methodQName)
                         throws org.apache.axis2.AxisFault{
                       try{
                           org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
                            
-                                    emptyEnvelope.getBody().addChild(param.getOMElement(eu.cumulus.soapResponse.GetCertificates_TestingResponse.MY_QNAME,factory));
+                                    emptyEnvelope.getBody().addChild(param.getOMElement(eu.cumulus.soapResponse.GetCertificate_TestingResponse.MY_QNAME,factory));
                                 
 
                          return emptyEnvelope;
@@ -393,8 +393,8 @@
                     }
                     }
                     
-                         private eu.cumulus.soapResponse.GetCertificates_TestingResponse wrapgetCertificates_Testing(){
-                                eu.cumulus.soapResponse.GetCertificates_TestingResponse wrappedElement = new eu.cumulus.soapResponse.GetCertificates_TestingResponse();
+                         private eu.cumulus.soapResponse.GetCertificate_TestingResponse wrapgetCertificates_Testing(){
+                                eu.cumulus.soapResponse.GetCertificate_TestingResponse wrappedElement = new eu.cumulus.soapResponse.GetCertificate_TestingResponse();
                                 return wrappedElement;
                          }
                     
@@ -529,16 +529,16 @@
 
         try {
         
-                if (eu.cumulus.soapResponse.GetCertificates_Testing.class.equals(type)){
+                if (eu.cumulus.soapResponse.GetCertificate_Testing.class.equals(type)){
                 
-                           return eu.cumulus.soapResponse.GetCertificates_Testing.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                           return eu.cumulus.soapResponse.GetCertificate_Testing.Factory.parse(param.getXMLStreamReaderWithoutCaching());
                     
 
                 }
            
-                if (eu.cumulus.soapResponse.GetCertificates_TestingResponse.class.equals(type)){
+                if (eu.cumulus.soapResponse.GetCertificate_TestingResponse.class.equals(type)){
                 
-                           return eu.cumulus.soapResponse.GetCertificates_TestingResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
+                           return eu.cumulus.soapResponse.GetCertificate_TestingResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
                     
 
                 }

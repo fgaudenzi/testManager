@@ -17,7 +17,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.xml.bind.JAXBElement;
 
-import org.eclipse.persistence.queries.DatabaseQuery;
 
 import eu.cumulus.certModelXML.TestBasedCertificationModelType;
 import eu.cumulus.database.CertificationModel;
@@ -29,14 +28,14 @@ public class Tester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		 //addCM();
+		 addCM();
 		 //deleteCM("TEST000006");
 		//findPerTandP("ID001","http://cumulus-project.eu/security-properties#IAM:identity-assurance:user-authentication-and-identity-assurance-levelTest");
 		// createCC("TEST000006");
 		// getCertificate(1);
 		//getCeertificates();
 		//getPropertiesAndToc();
-		checkXML_CM();
+		//checkXML_CM();
 	}
 
 	private static void checkXML_CM() {
@@ -111,7 +110,7 @@ public class Tester {
 	}
 
 	public static void addCM() {
-		String filePath = "/Users/filippogaudenzi/Documents/workspace/CumulusTestManager/XML_Repository/TestBasedCertificationModelv2-ATOS-user-authentication-and-identity-assurance-level.xml";
+		String filePath = "/Users/filippogaudenzi/Documents/workspace/CumulusTestManager/XML_Repository/cmv3.xml";
 		String XML = "";
 		try {
 			XML = Tester

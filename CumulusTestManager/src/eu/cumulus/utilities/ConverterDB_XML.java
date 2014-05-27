@@ -65,6 +65,9 @@ public class ConverterDB_XML {
 		// SecurityProperty
 		SecurityPropertyType sp = tbcm.getTestedSecurityProperty();
 		cm.setPropertyBean(ConverterDB_XML.fromXML(sp));
+		if(cm.getPropertyBean()==null){
+			return null;
+		}
 		// Tester
 		TesterType tt = tbcm.getTester();
 		cm.setTesterBean(ConverterDB_XML.fromXML(tt));
@@ -265,13 +268,15 @@ public class ConverterDB_XML {
 			return pp;
 		} catch (javax.persistence.NoResultException ex) {
 			manager.close();
-			Property p = new Property();
+			return null;
+			/*Property p = new Property();
 			p.setClass_(sp.getSProperty().getClazz());
 			p.setId(sp.getSecurityPropertyId());
 			p.setSecurityPropertyDefinition(sp.getSecurityPropertyDefinition());
 			p.setShortName(sp.getShortName());
 			p.setVocabulary(sp.getVocabulary());
-			return p;
+			*/
+			//TODO it should return null, the property wasn't found
 		}
 
 	}

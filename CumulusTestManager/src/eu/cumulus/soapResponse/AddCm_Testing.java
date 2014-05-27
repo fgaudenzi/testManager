@@ -22,16 +22,10 @@ public class AddCm_Testing implements org.apache.axis2.databinding.ADBBean {
 
 	protected java.lang.String localCM;
 
-	/*
-	 * This tracker boolean wil be used to detect whether the user called the
-	 * set method for this attribute. It will be used to determine whether to
-	 * include this field in the serialized XML
-	 */
-	protected boolean localCMTracker = false;
+	
+	
 
-	public boolean isCMSpecified() {
-		return localCMTracker;
-	}
+	
 
 	/**
 	 * Auto generated getter method
@@ -49,7 +43,6 @@ public class AddCm_Testing implements org.apache.axis2.databinding.ADBBean {
 	 *            CM
 	 */
 	public void setCM(java.lang.String param) {
-		localCMTracker = true;
 
 		this.localCM = param;
 
@@ -108,7 +101,7 @@ public class AddCm_Testing implements org.apache.axis2.databinding.ADBBean {
 			}
 
 		}
-		if (localCMTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "CM", xmlWriter);
 
@@ -126,7 +119,7 @@ public class AddCm_Testing implements org.apache.axis2.databinding.ADBBean {
 			}
 
 			xmlWriter.writeEndElement();
-		}
+		
 		xmlWriter.writeEndElement();
 
 	}
@@ -339,14 +332,14 @@ public class AddCm_Testing implements org.apache.axis2.databinding.ADBBean {
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (localCMTracker) {
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "CM"));
 
 			elementList.add(localCM == null ? null
 					: org.apache.axis2.databinding.utils.ConverterUtil
 							.convertToString(localCM));
-		}
+		
 
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());

@@ -99,6 +99,7 @@ public class Certificate implements Serializable {
 		eu.cumulus.certModelXML.certificate.TestCertificateType.Toc toc = new eu.cumulus.certModelXML.certificate.TestCertificateType.Toc();
 		toc.setId(this.certificationModel.getTocBean().getId());
 		tct.setToc(toc);
+		tct.setStatus(this.status);
 		return tct;
 	}
 
@@ -112,6 +113,8 @@ public class Certificate implements Serializable {
 		cs.setSecurityProperty(this.certificationModel.getPropertyBean()
 				.getClass_());
 		cs.setTocName(this.certificationModel.getTocBean().getId());
+		cs.setStatus(this.status);
+		
 		return cs;
 	}
 

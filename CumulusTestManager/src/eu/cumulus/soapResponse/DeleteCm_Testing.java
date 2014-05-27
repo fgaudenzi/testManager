@@ -27,11 +27,9 @@ public class DeleteCm_Testing implements org.apache.axis2.databinding.ADBBean {
 	 * set method for this attribute. It will be used to determine whether to
 	 * include this field in the serialized XML
 	 */
-	protected boolean localCM_IDTracker = false;
+	
 
-	public boolean isCM_IDSpecified() {
-		return localCM_IDTracker;
-	}
+	
 
 	/**
 	 * Auto generated getter method
@@ -49,7 +47,7 @@ public class DeleteCm_Testing implements org.apache.axis2.databinding.ADBBean {
 	 *            CM_ID
 	 */
 	public void setCM_ID(java.lang.String param) {
-		localCM_IDTracker = true;
+		
 
 		this.localCM_ID = param;
 
@@ -108,7 +106,7 @@ public class DeleteCm_Testing implements org.apache.axis2.databinding.ADBBean {
 			}
 
 		}
-		if (localCM_IDTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "CM_ID", xmlWriter);
 
@@ -126,7 +124,7 @@ public class DeleteCm_Testing implements org.apache.axis2.databinding.ADBBean {
 			}
 
 			xmlWriter.writeEndElement();
-		}
+		
 		xmlWriter.writeEndElement();
 
 	}
@@ -339,14 +337,14 @@ public class DeleteCm_Testing implements org.apache.axis2.databinding.ADBBean {
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (localCM_IDTracker) {
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "CM_ID"));
 
 			elementList.add(localCM_ID == null ? null
 					: org.apache.axis2.databinding.utils.ConverterUtil
 							.convertToString(localCM_ID));
-		}
+		
 
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());

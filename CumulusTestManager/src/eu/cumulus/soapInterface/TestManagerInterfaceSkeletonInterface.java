@@ -80,11 +80,25 @@ public interface TestManagerInterfaceSkeletonInterface {
              */
 
             
-                    public eu.cumulus.soapResponse.GetCertificates_TestingResponse getCertificates_Testing
+                    public eu.cumulus.soapResponse.GetCertificates_TestingResponse[] getCertificates_Testing
                     (
-                      eu.cumulus.soapResponse.GetCertificates_Testing getCertificates_Testing
+                      
                      )
                 ;
+                    
+                    
+                    /**
+                     * Auto generated method signature
+                     * 
+                                                * @param getCertificates_Testing
+                     */
+
+                    
+                            public eu.cumulus.soapResponse.GetCertificate_TestingResponse getCertificate_Testing
+                            (
+                              eu.cumulus.soapResponse.GetCertificate_Testing getCertificates_Testing
+                             )
+                        ;
             
     
 

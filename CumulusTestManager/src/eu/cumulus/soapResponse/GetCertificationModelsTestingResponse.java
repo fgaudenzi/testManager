@@ -24,16 +24,7 @@ public class GetCertificationModelsTestingResponse implements
 
 	protected java.lang.String[] local_return;
 
-	/*
-	 * This tracker boolean wil be used to detect whether the user called the
-	 * set method for this attribute. It will be used to determine whether to
-	 * include this field in the serialized XML
-	 */
-	protected boolean local_returnTracker = false;
-
-	public boolean is_returnSpecified() {
-		return local_returnTracker;
-	}
+	
 
 	/**
 	 * Auto generated getter method
@@ -61,8 +52,6 @@ public class GetCertificationModelsTestingResponse implements
 
 		validate_return(param);
 
-		local_returnTracker = true;
-
 		this.local_return = param;
 	}
 
@@ -78,7 +67,7 @@ public class GetCertificationModelsTestingResponse implements
 		}
 
 		// update the setting tracker
-		local_returnTracker = true;
+		
 
 		java.util.List list = org.apache.axis2.databinding.utils.ConverterUtil
 				.toList(local_return);
@@ -143,7 +132,7 @@ public class GetCertificationModelsTestingResponse implements
 			}
 
 		}
-		if (local_returnTracker) {
+		
 			if (local_return != null) {
 				namespace = "http://testingpkg.cumulus.eu";
 				for (int i = 0; i < local_return.length; i++) {
@@ -186,7 +175,7 @@ public class GetCertificationModelsTestingResponse implements
 
 			}
 
-		}
+		
 		xmlWriter.writeEndElement();
 
 	}
@@ -399,7 +388,7 @@ public class GetCertificationModelsTestingResponse implements
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (local_returnTracker) {
+		
 			if (local_return != null) {
 				for (int i = 0; i < local_return.length; i++) {
 
@@ -426,7 +415,7 @@ public class GetCertificationModelsTestingResponse implements
 
 			}
 
-		}
+		
 
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());

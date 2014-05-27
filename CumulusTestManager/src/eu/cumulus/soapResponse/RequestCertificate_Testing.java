@@ -28,11 +28,7 @@ public class RequestCertificate_Testing implements
 	 * set method for this attribute. It will be used to determine whether to
 	 * include this field in the serialized XML
 	 */
-	protected boolean localCertificationModelTracker = false;
-
-	public boolean isCertificationModelSpecified() {
-		return localCertificationModelTracker;
-	}
+	
 
 	/**
 	 * Auto generated getter method
@@ -50,7 +46,7 @@ public class RequestCertificate_Testing implements
 	 *            CertificationModel
 	 */
 	public void setCertificationModel(java.lang.String param) {
-		localCertificationModelTracker = true;
+		
 
 		this.localCertificationModel = param;
 
@@ -110,7 +106,7 @@ public class RequestCertificate_Testing implements
 			}
 
 		}
-		if (localCertificationModelTracker) {
+		
 			namespace = "http://testingpkg.cumulus.eu";
 			writeStartElement(null, namespace, "CertificationModel", xmlWriter);
 
@@ -128,7 +124,7 @@ public class RequestCertificate_Testing implements
 			}
 
 			xmlWriter.writeEndElement();
-		}
+		
 		xmlWriter.writeEndElement();
 
 	}
@@ -341,15 +337,14 @@ public class RequestCertificate_Testing implements
 		java.util.ArrayList elementList = new java.util.ArrayList();
 		java.util.ArrayList attribList = new java.util.ArrayList();
 
-		if (localCertificationModelTracker) {
+		
 			elementList.add(new javax.xml.namespace.QName(
 					"http://testingpkg.cumulus.eu", "CertificationModel"));
 
 			elementList.add(localCertificationModel == null ? null
 					: org.apache.axis2.databinding.utils.ConverterUtil
 							.convertToString(localCertificationModel));
-		}
-
+		
 		return new org.apache.axis2.databinding.utils.reader.ADBXMLStreamReaderImpl(
 				qName, elementList.toArray(), attribList.toArray());
 

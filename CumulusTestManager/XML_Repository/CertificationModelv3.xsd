@@ -13,7 +13,17 @@
             <xs:element name="Toc" type="tocType" maxOccurs="1"/>
             <xs:element name="TestedSecurityProperty" type="securityPropertyType"/>
             <xs:element name="Tester" type="testerType"/>
-            <xs:element name="Context" type="contextType"/>
+            <xs:element name="Context">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="contextType">
+                            <xs:sequence maxOccurs="unbounded">
+                                <xs:element name="Agent"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="certificationModelType">
@@ -485,5 +495,20 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AgentType">
+        <xs:sequence>
+            <xs:element name="ProbviderInformation">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="Credential" type="xs:string"/>
+                        <xs:element name="URI" type="xs:anyURI"/>
+                        <xs:element name="ImageID" type="xs:string"/>
+                        <xs:element name="providerType" type="xs:string"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="sameNetwork" type="xs:boolean"/>
     </xs:complexType>
 </xs:schema>
