@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="Certificate" type="CertificateType"/>
+    <xs:complexType name="CertificateType">
+        <xs:sequence>
+            <xs:element name="CertificateId" type="xs:string"/>
+            <xs:element name="CertificationModelId" type="xs:string"/>
+            <xs:element name="CertifiedSecurityProperty" type="xs:string"/>
+            <xs:element name="CertificateInfo" type="certificateInfoType"> </xs:element>
+            <xs:element name="CertificationDate" type="xs:date"/>
+            <xs:element name="CertificateStatus" type="xs:string"/>
+            <xs:element name="ExpirationDate" type="xs:dateTime"/>
+            <xs:element name="Artifacts" type="Artifacts"/>
+            <xs:element name="Signature" type="signatureType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="certificateInfoType">
+        <xs:sequence maxOccurs="1" minOccurs="1">
+            <xs:element name="CertificateType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Test-based"/>
+                        <xs:enumeration value="Monitor-based"/>
+                        <xs:enumeration value="TPM-based"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="signatureType">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="Role" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Artifacts">
+        <xs:sequence>
+            <xs:element name="Test-Artifact" minOccurs="0"/>
+            <xs:element name="Monitor-Artifact" minOccurs="0"/>
+            <xs:element name="TPM-Artificat" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

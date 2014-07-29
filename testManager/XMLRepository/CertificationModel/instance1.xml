@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:testBasedCertifcationModel xmlns:sch="http://www.ascc.net/xml/schematron"
+ xmlns:ec="http://slasoi.org/monitoring/citymonitor/xmlrule"
+ xmlns:sla="http://www.slaatsoi.eu/slamodel"
+ xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+ xmlns:cm="http://www.cumulus.org/certificate/model"
+ xmlns:test="http://www.cumulus.org/certificate/model/test"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.cumulus.org/certificate/model/test file:/Users/iridium/Jobs/testManager/CumulusTestManager/XML_Repository/testbasedCM.xsd">
+    <CertificationModelID>cumulus:cm:id:test:00001</CertificationModelID>
+    <LifeCycle>
+        <InitialState stateId="state1"/>
+        <states>
+            <state>
+                <atomicState stateId="state1" name="NOT ISSUED" description="Initial State"/>
+            </state>
+            <state>
+                <atomicState stateId="state2" name="ISSUED" description="Certified Property"/>
+            </state>
+        </states>
+        <transitions>
+            <transition From="state1" To="state2">
+                <WhenCondition negated="true">
+                    <LogicalExpression negated="true">
+                        <Condition>
+                            <collectorCondition>coll1</collectorCondition>
+                        </Condition>
+                    </LogicalExpression>
+                </WhenCondition>
+            </transition>
+        </transitions>
+    </LifeCycle>
+    <Signature>
+        <Name>CumulusCA</Name>
+        <Role>TESTER</Role>
+    </Signature>
+    <ToC Id="Toc001">
+        <CloudLayer>SaaS</CloudLayer>
+        <CloudLayer>PaaS</CloudLayer>
+        <ConcreteToc>Toc Tester</ConcreteToc>
+        <TocDescription>toc for testind DB</TocDescription>
+        <TocURI></TocURI>
+       <ToTs>
+           <ToT>
+               <Interface>
+                   <type></type>
+                   <call></call>
+               </Interface>
+           </ToT>
+       </ToTs>
+    </ToC>
+    <SecurityProperty SecurityPropertyDefinition="check if the given policy are really applied">
+        <sProperty class="AIS:confidentiality:data-access-level">
+            <propertyPerformance>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name="level">2</propertyPerformanceCell>
+                </propertyPerformanceRow>
+            </propertyPerformance>
+            <propertyParameterList>
+            </propertyParameterList>
+        </sProperty>
+    </SecurityProperty>
+    <CertificationModelTemplateID>TemplateCM1</CertificationModelTemplateID>
+    <Collectors>
+        <AbstractCollector Id="Abs1">
+            <TestCategory>Functionality</TestCategory>
+            <TestType></TestType>
+            <TestDescription></TestDescription>
+            <TestGenerationModelLink>http://www.cumulus-project.eu/model1.xml</TestGenerationModelLink>
+            <TestAttributes>
+                <TestAttribute>
+                    <ID>1</ID>
+                    <Name>Name1</Name>
+                    <Value>11
+                    </Value>
+                </TestAttribute>
+                <TestAttribute>
+                    <ID>2</ID>
+                    <Name>Name2</Name>
+                    <Value>22
+                    </Value>
+                </TestAttribute>
+            </TestAttributes>
+            <TestCases>
+                <TestCase>
+                    <ID>1</ID>
+                    <Description>TestCase1</Description>
+                    <TestInstance Operation="Login">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input>admin admin</Input>
+                        <ExpectedOutput>true</ExpectedOutput>
+                        <PostConditions>go aheed</PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="lockout">
+                        <Preconditions>lockin false 5 times</Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input>admin admin</Input>
+                        <ExpectedOutput>lockout</ExpectedOutput>
+                        <PostConditions>end</PostConditions>
+                    </TestInstance>
+                </TestCase>
+                <TestCase>
+                    <ID>2</ID>
+                    <Description>TestCase2</Description>
+                    <TestInstance Operation="Login2">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input>user user</Input>
+                        <ExpectedOutput>true</ExpectedOutput>
+                        <PostConditions>go aheed</PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="lockout2">
+                        <Preconditions>lockin false 7 times</Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input>user user</Input>
+                        <ExpectedOutput>lockout</ExpectedOutput>
+                        <PostConditions>end</PostConditions>
+                    </TestInstance>
+                </TestCase>
+            </TestCases>
+        </AbstractCollector>
+        
+        <Collector Id="coll1" isStatic="false" >
+            <Aggregator AggregatorDescription="AggDesc" >
+                <TestMetrics CombiningAlgorithm="AND">
+                    <TestMetric>
+                        <expected>false</expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                    <TestMetric>
+                        <expected>false</expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                </TestMetrics>
+            </Aggregator>
+            <AbstractCollectorRef id="Abs1">
+                
+            </AbstractCollectorRef>
+        </Collector>
+        <Collector Id="coll2" isStatic="true">
+            <Aggregator transient="30sec">
+                <TestMetrics>
+                    <TestMetric>
+                        <expected>true</expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                </TestMetrics>
+            </Aggregator>
+            <AbstractCollectorRef id="Abs1">
+            </AbstractCollectorRef>
+        </Collector>
+    </Collectors>
+</test:testBasedCertifcationModel>
