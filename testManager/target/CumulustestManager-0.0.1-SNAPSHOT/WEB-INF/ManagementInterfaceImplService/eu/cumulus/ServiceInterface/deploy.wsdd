@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ManagementInterfaceImplService WSDL service -->
+
+  <service name="ManagementInterfaceImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ServiceInterface.cumulus.eu"/>
+      <parameter name="wsdlServiceElement" value="ManagementInterfaceImplService"/>
+      <parameter name="schemaQualified" value="http://ServiceInterface.cumulus.eu"/>
+      <parameter name="wsdlServicePort" value="ManagementInterfaceImpl"/>
+      <parameter name="className" value="eu.cumulus.ServiceInterface.ManagementInterfaceImpl"/>
+      <parameter name="wsdlPortType" value="ManagementInterfaceImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://ServiceInterface.cumulus.eu" xmlns:retNS="http://ServiceInterface.cumulus.eu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addCm_Testing" qname="operNS:addCm_Testing" returnQName="retNS:addCm_TestingReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ServiceInterface.cumulus.eu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:addCm_TestingParam" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ServiceInterface.cumulus.eu" xmlns:retNS="http://ServiceInterface.cumulus.eu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deleteCm_Testing" qname="operNS:deleteCm_Testing" returnQName="retNS:deleteCm_TestingReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ServiceInterface.cumulus.eu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:deleteCm_Testing" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="deleteCm_Testing addCm_Testing"/>
+
+  </service>
+</deployment>

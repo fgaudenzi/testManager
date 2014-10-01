@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:CertificationModel xmlns:slasoi="http://www.slaatsoi.eu/slamodel"
+ xmlns:sch="http://www.ascc.net/xml/schematron"
+ xmlns:ec="http://slasoi.org/monitoring/citymonitor/xmlrule"
+ xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+ xmlns:model="http://www.cumulus.org/certificate/model"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.cumulus.org/certificate/model file:/Users/iridium/Documents/workspace/testManager/XMLRepository/CertificationModel/CommonPartsCM.xsd">
+    <CertificationModelID></CertificationModelID>
+    <LifeCycle>
+        <InitialState stateId=""/>
+        <states>
+            <state>
+            </state>
+            <state>
+            </state>
+        </states>
+        <states>
+            <state>
+            </state>
+            <state>
+            </state>
+        </states>
+        <transitions>
+            <transition From="" To="">
+            </transition>
+            <transition From="" To="">
+            </transition>
+        </transitions>
+        <transitions>
+            <transition From="" To="">
+            </transition>
+            <transition From="" To="">
+            </transition>
+        </transitions>
+    </LifeCycle>
+    <Signature>
+        <Name></Name>
+        <Role></Role>
+    </Signature>
+    <ToC Id="">
+        <CloudLayer></CloudLayer>
+        <CloudLayer></CloudLayer>
+        <ConcreteToc></ConcreteToc>
+        <TocDescription></TocDescription>
+        <TocURI></TocURI>
+        <ToTs>
+            <ToT>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+            </ToT>
+            <ToT>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+            </ToT>
+        </ToTs>
+    </ToC>
+    <SecurityProperty SecurityPropertyDefinition="">
+        <sProperty class="">
+            <propertyPerformance>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                </propertyPerformanceRow>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                </propertyPerformanceRow>
+            </propertyPerformance>
+            <propertyParameterList>
+            </propertyParameterList>
+        </sProperty>
+    </SecurityProperty>
+</model:CertificationModel>
