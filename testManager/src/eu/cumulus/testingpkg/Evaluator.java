@@ -10,10 +10,10 @@ public class Evaluator {
 		 
 		// Compile the expression once; relatively slow.
 		 ExpressionEvaluator ee = new ExpressionEvaluator(
-		     "!(clogin )",                     // expression
+		     "(cfile && (cdb))",                     // expression
 		     boolean.class,                           // expressionType
-		     new String[] { "clogin" },           // parameterNames
-		     new Class[] { boolean.class } // parameterTypes
+		     new String[] { "cfile","cdb" },           // parameterNames
+		     new Class[] { boolean.class,boolean.class } // parameterTypes
 		 );
 		  
 		 
@@ -21,7 +21,7 @@ public class Evaluator {
 		 Boolean res = (Boolean) ee.evaluate(
 		     new Object[] {          // parameterValues
 		         new Boolean(true),
-		         
+		         new Boolean(true),
 		     }
 		 );
 		 //ee.guessParameterNames(scanner)

@@ -11,7 +11,7 @@ public interface TestManagerInterface {
 	 * @param deleteCm_Testing
 	 * @return
 	 */
-	public boolean deleteCm_Testing(
+	public CertModelCreationResponse deleteCm_Testing(
 			String deleteCm_Testing);
 	
 	/**

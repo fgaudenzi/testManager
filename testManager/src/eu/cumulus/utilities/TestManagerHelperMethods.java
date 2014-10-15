@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.apache.log4j.Logger;
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 
 /**
  * Provides several useful helper functions to rest of the application

@@ -115,15 +115,17 @@ public class RabbitConsumer implements Runnable {
 	     
 	      channel.exchangeDeclare(EXCHANGE_NAME, "direct");
 	      String queueName = channel.queueDeclare().getQueue();
+	      System.out.println(queueName);
 	      String severity = "key-test";
 	      channel.queueBind(queueName, EXCHANGE_NAME, severity);
 	      QueueingConsumer consumer = new QueueingConsumer(channel);
 	      channel.basicConsume(queueName, true, consumer);
 	      while (true) {
-	            QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+	          System.out.println("listening");  
+	    	  QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 	            String message = new String(delivery.getBody());
 	            String routingKey = delivery.getEnvelope().getRoutingKey();
-	            System.out.println("MESSAGE:"+message);
+	            //System.out.println("MESSAGE:"+message);
 	            log.info(" [x] Received '" + routingKey + "':'" + message + "'");
 	            String[] messages=message.split("#");
 	            if(agents.contains(messages[0])){

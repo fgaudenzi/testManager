@@ -191,6 +191,7 @@ public class CertificationEvaluator {
     public void updateCollector(String c_id,String value){
     	System.out.println("UPDATED COLLECTOR");
     	Collector checker=this.collectors.get(c_id);
+		value=value.replaceAll("[\n\r]", "");
     	checker.updateAggregator(value);
     	LifeCycleUpdater();
     }
@@ -217,7 +218,7 @@ public class CertificationEvaluator {
 		/**
 		 * @return
 		 */
-		public boolean getStatus(){
+		public Boolean getStatus(){
 			return Status;
 		}
 		
@@ -247,7 +248,18 @@ public class CertificationEvaluator {
 			try{
 			if (expected.equalsIgnoreCase("TRUE") || expected.equalsIgnoreCase("FALSE")) {
 				boolean expected_value=Boolean.parseBoolean(expected);
+				boolean tested_value;
+				if (tested.equalsIgnoreCase("TRUE"))
+					tested_value=true;
+				else
+					tested_value=false;
 				
+				if(operation.equalsIgnoreCase("=")){
+					if(expected_value==tested_value)
+						return true;
+					else
+						return false;
+				}
 				
 				
 			}else{

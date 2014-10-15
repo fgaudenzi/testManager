@@ -50,9 +50,9 @@
   
   
   
-<!--<listener>
+<listener>
   <listener-class>eu.cumulus.init.InitContextListener</listener-class>
-</listener> -->
+</listener>
 </web-app>
 
 

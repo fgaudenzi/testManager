@@ -51,14 +51,15 @@ public class InitContextListener implements ServletContextListener{
 	    			".testManager" + System.getProperty("file.separator");
 		    //PropertyConfigurator.configure(defaultPath+"log4j.properties");
 		    PropertyConfigurator.configure("/Users/iridium/Documents/workspace/testManager/LOG4J/log4j.properties");
-
+			//PropertyConfigurator.configure("/etc/testManager/LOG4J/log4j.properties");
 		    //ottengo instanza del log
 		    Logger log = Logger.getLogger(InitContextListener.class);
 		    log.error("INIT CONTEXTUALIZATION CHALLENGE");
 			//TestManagerHelperMethods tmhm=new TestManagerHelperMethods(defaultPath+"testManger.properties");
 			///Users/iridium/Jobs/pythonAgents/testmanager.properties
+		   
 		    TestManagerHelperMethods tmhm=new TestManagerHelperMethods("/Users/iridium/Jobs/pythonAgents/testmanager.properties");
-		    
+		    //TestManagerHelperMethods tmhm=new TestManagerHelperMethods("/etc/testManager/testManager.config");
 			
 			ServletContext context = arg0.getServletContext();
 	        int nr_executors = 1;

@@ -6,11 +6,18 @@ import eu.cumulus.init.RabbitConsumer;
 
 
 public class TestManagerInterfaceImplementation implements TestManagerInterface{
-	public boolean deleteCm_Testing(String deleteCm_Testing) {
+	public CertModelCreationResponse deleteCm_Testing(String deleteCm_Testing) {
 		boolean response;
+		CertModelCreationResponse result=new CertModelCreationResponse();
 		response=eu.cumulus.engine.SoapEngine
 				.deleteCM(deleteCm_Testing);
-		return response;
+		if(response){
+			result.setMessage("Deleted succesful");
+		}else{
+			result.setMessage("Delete error, CM may not exist or there was an error, contact cumulus administrator");
+		}
+		result.setStatus(response);
+		return result;
 	}
 	public  CertModelCreationResponse addCm_Testing(String addCm_TestingParam){
 		

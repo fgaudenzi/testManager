@@ -146,9 +146,12 @@ public class LyfeCycleTransitionsSaxParser extends DefaultHandler {
     				
     				
     				
-//    				System.out.println(this.element);
-//    	    		System.out.println("Adding "+contenuto+" to Formula");
-    				
+    				System.out.println(this.element);
+    	    		System.out.println("Adding "+contenuto+" to Formula");
+    				//ADDED 15/10/2014
+    	    		String ck=contenuto.replaceAll(" ","");
+    	    		if(!ck.equalsIgnoreCase(""))
+    	    			this.collectors.add(contenuto);
     				
         			
         			this.formula+=contenuto;
