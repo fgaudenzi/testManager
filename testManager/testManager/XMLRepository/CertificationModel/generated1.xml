@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:testBasedCertifcationModel xmlns:slasoi="http://www.slaatsoi.eu/slamodel"
+ xmlns:sch="http://www.ascc.net/xml/schematron"
+ xmlns:cm="http://www.cumulus.org/certificate/model"
+ xmlns:ec="http://slasoi.org/monitoring/citymonitor/xmlrule"
+ xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+ xmlns:test="http://www.cumulus.org/certificate/model/test"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.cumulus.org/certificate/model/test file:/Users/iridium/Documents/workspace/testManager/XMLRepository/CertificationModel/testbasedCM.xsd">
+    <CertificationModelID></CertificationModelID>
+    <LifeCycle>
+        <InitialState stateId="not_issued"/>
+        <states>
+            <state>
+                <atomicState stateId="not_issued" name="Not Issued"/>
+            </state>
+            <state>
+                <atomicState stateId="issued" name="Issued"/>
+            </state>
+            <state>
+                <atomicState stateId="Suspended" name="Suspended"/>
+            </state>
+            <state>
+                <atomicState stateId="expired" name="Expired"/>
+            </state>
+            <state>
+                <atomicState stateId="revoked" name="Revoked"/>
+            </state>
+        </states>
+        <transitions>
+            <transition From="issued" To="suspended">
+                <WhenCondition negated="true">
+                    <Condition>
+                        <collectorCondition>coll1</collectorCondition>
+                    </Condition>
+                    <LogicalOperator>AND</LogicalOperator>
+                    <LogicalExpression >
+                        
+                    
+                   
+                            
+                                <Condition>
+                                    <collectorCondition>coll2</collectorCondition>
+                                </Condition>
+                                <LogicalOperator>OR</LogicalOperator>
+                                <LogicalExpression negated="true">
+                                    <Condition>
+                                        <collectorCondition>coll3</collectorCondition>
+                                    </Condition>
+                                </LogicalExpression>
+                    </LogicalExpression>
+                </WhenCondition>
+            </transition>
+        </transitions>
+     
+    </LifeCycle>
+    <Signature>
+        <Name></Name>
+        <Role></Role>
+    </Signature>
+    <ToC Id="1">
+        <CloudLayer>SaaS</CloudLayer>
+        <CloudLayer>PaaS</CloudLayer>
+        <ConcreteToc></ConcreteToc>
+        <TocDescription></TocDescription>
+        <TocURI></TocURI>
+        <ToTs>
+            <ToT>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+            </ToT>
+            <ToT>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+                <Interface>
+                    <type></type>
+                    <call></call>
+                </Interface>
+            </ToT>
+        </ToTs>
+    </ToC>
+    <SecurityProperty SecurityPropertyDefinition="">
+        <sProperty class="">
+            <propertyPerformance>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                </propertyPerformanceRow>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                </propertyPerformanceRow>
+            </propertyPerformance>
+            <propertyParameterList>
+            </propertyParameterList>
+        </sProperty>
+    </SecurityProperty>
+    <CertificationModelTemplateID></CertificationModelTemplateID>
+    <Collectors>
+        <AbstractCollector Id="1">
+            <TestCategory></TestCategory>
+            <TestType></TestType>
+            <TestDescription></TestDescription>
+            <TestGenerationModelLink>http://www.cumulus-project.eu</TestGenerationModelLink>
+            <TestAttributes>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+            </TestAttributes>
+            <TestCases>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+            </TestCases>
+        </AbstractCollector>
+        <AbstractCollector Id="1">
+            <TestCategory></TestCategory>
+            <TestType></TestType>
+            <TestDescription></TestDescription>
+            <TestGenerationModelLink>http://www.cumulus-project.eu</TestGenerationModelLink>
+            <TestAttributes>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+            </TestAttributes>
+            <TestCases>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+            </TestCases>
+        </AbstractCollector>
+        <Collector Id="" isStatic="">
+            <Aggregator>
+                <TestMetrics>
+                    <TestMetric>
+                        <expected></expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                    <TestMetric>
+                        <expected></expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                </TestMetrics>
+            </Aggregator>
+            <AbstractCollectorRef id="">
+            </AbstractCollectorRef>
+        </Collector>
+        <Collector Id="" isStatic="">
+            <Aggregator>
+                <TestMetrics>
+                    <TestMetric>
+                        <expected></expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                    <TestMetric>
+                        <expected></expected>
+                        <tested></tested>
+                        <operation>></operation>
+                    </TestMetric>
+                </TestMetrics>
+            </Aggregator>
+            <AbstractCollectorRef id="">
+            </AbstractCollectorRef>
+        </Collector>
+    </Collectors>
+</test:testBasedCertifcationModel>

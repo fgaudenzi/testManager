@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pa:PropertiesAndTocs xmlns:pa="http://www.cumulus.org/pAndtocs"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.cumulus.org/pAndtocs file:/Users/iridium/Documents/workspace/testManager/XMLRepository/PropertyAndTocs/PropertiesAndTocs.xsd">
+    <Property category="">
+        <TargetOfCertification ID=""/>
+        <TargetOfCertification ID=""/>
+    </Property>
+    <Property category="">
+        <TargetOfCertification ID=""/>
+        <TargetOfCertification ID=""/>
+    </Property>
+</pa:PropertiesAndTocs>

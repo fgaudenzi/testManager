@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sla:AgreedAt xmlns:sch="http://www.ascc.net/xml/schematron"
+ xmlns:ec="http://slasoi.org/monitoring/citymonitor/xmlrule"
+ xmlns:sla="http://www.slaatsoi.eu/slamodel"
+ xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+ xmlns:model="http://www.cumulus.org/certificate/model"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.slaatsoi.eu/slamodel file:/Users/iridium/Documents/workspace/testManager/XMLRepository/CertificationModel/CommonPartsCM.xsd"></sla:AgreedAt>

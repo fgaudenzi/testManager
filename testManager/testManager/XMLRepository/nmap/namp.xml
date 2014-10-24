@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.40 scan initiated Mon Sep 22 14:10:21 2014 as: nmap -oX nmap.txt -p 443 -&#45;script ssl-cert,ssl-enum-ciphers orange.sn -->
+<nmaprun scanner="nmap"
+    args="nmap -oX nmap.txt -p 443 -&#45;script ssl-cert,ssl-enum-ciphers orange.sn"
+    start="1411387821" startstr="Mon Sep 22 14:10:21 2014" version="6.40" xmloutputversion="1.04">
+    <scaninfo type="connect" protocol="tcp" numservices="1" services="443"/>
+    <verbose level="0"/>
+    <debugging level="0"/>
+    <host starttime="1411387821" endtime="1411387825">
+        <status state="up" reason="syn-ack" reason_ttl="0"/>
+        <address addr="41.208.148.69" addrtype="ipv4"/>
+        <hostnames>
+            <hostname name="orange.sn" type="user"/>
+        </hostnames>
+        <ports>
+            <port protocol="tcp" portid="443">
+                <state state="open" reason="syn-ack" reason_ttl="0"/>
+                <service name="https" method="table" conf="3"/>
+                <script id="ssl-cert"
+                    output="Subject: commonName=www.orange.sn/organizationName=Societe Nationale des Telecommunications du Senegal/stateOrProvinceName=Senegal/countryName=SN&#xa;Issuer: commonName=VeriSign Class 3 International Server CA - G3/organizationName=VeriSign, Inc./countryName=US&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Not valid before: 2013-09-09T23:00:00+00:00&#xa;Not valid after:  2014-09-11T22:59:59+00:00&#xa;MD5:   15b7 3845 46e9 f949 5da2 4bf3 9e5a 4abb&#xa;SHA-1: d06d 83ac ce96 2b8f 7897 da33 3d90 1cef 5220 8ef3">
+                    <table key="subject">
+                        <elem key="countryName">SN</elem>
+                        <elem key="stateOrProvinceName">Senegal</elem>
+                        <elem key="organizationName">Societe Nationale des Telecommunications du
+                            Senegal</elem>
+                        <elem key="commonName">www.orange.sn</elem>
+                        <elem key="localityName">Dakar</elem>
+                        <elem key="organizationalUnitName">DRPS</elem>
+                    </table>
+                    <table key="issuer">
+                        <elem key="organizationName">VeriSign, Inc.</elem>
+                        <elem key="commonName">VeriSign Class 3 International Server CA - G3</elem>
+                        <elem key="countryName">US</elem>
+                        <elem key="organizationalUnitName">Terms of use at
+                            https://www.verisign.com/rpa (c)10</elem>
+                    </table>
+                    <table key="pubkey">
+                        <elem key="bits">2048</elem>
+                        <elem key="type">rsa</elem>
+                    </table>
+                    <table key="validity">
+                        <elem key="notBefore">2013-09-09T23:00:00+00:00</elem>
+                        <elem key="notAfter">2014-09-11T22:59:59+00:00</elem>
+                    </table>
+                    <elem key="md5">15b7384546e9f9495da24bf39e5a4abb</elem>
+                    <elem key="sha1">d06d83acce962b8f7897da333d901cef52208ef3</elem>
+                    <elem key="pem">-&#45;&#45;&#45;&#45;BEGIN
+                        CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFXjCCBEagAwIBAgIQKCEkO3Sp/OV3PfdIA+KelzANBgkqhkiG9w0BAQUFADCB&#xa;vDELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQL&#xa;ExZWZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTswOQYDVQQLEzJUZXJtcyBvZiB1c2Ug&#xa;YXQgaHR0cHM6Ly93d3cudmVyaXNpZ24uY29tL3JwYSAoYykxMDE2MDQGA1UEAxMt&#xa;VmVyaVNpZ24gQ2xhc3MgMyBJbnRlcm5hdGlvbmFsIFNlcnZlciBDQSAtIEczMB4X&#xa;DTEzMDkxMDAwMDAwMFoXDTE0MDkxMTIzNTk1OVowgZQxCzAJBgNVBAYTAlNOMRAw&#xa;DgYDVQQIEwdTZW5lZ2FsMQ4wDAYDVQQHFAVEYWthcjE8MDoGA1UEChQzU29jaWV0&#xa;ZSBOYXRpb25hbGUgZGVzIFRlbGVjb21tdW5pY2F0aW9ucyBkdSBTZW5lZ2FsMQ0w&#xa;CwYDVQQLFAREUlBTMRYwFAYDVQQDFA13d3cub3JhbmdlLnNuMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5z0XzvfVPSMscI0A2727TUr8F9Ygmz08v/i7&#xa;uZamyvGDcEb18xqJHK5RrVr3b7A0ON+GajROCJH8SAFsAcg4TgRNu/nB8q9pcqbg&#xa;7n/l6Xte6UkO6By2CS+49PyMeIsnnxZIW1DwjSR7sZD1tjVYpfBAewmsx3YCrX+d&#xa;B8xbm0SyyCA2QETv+HugaENpg7khQbF2RwvaLbQ7/qV1SI2bG2JjksyZFgJD5nKl&#xa;E0imSdCqT4bdF40Nle2Pw57qvpcnMQhAgZf/Odm8i6CpvbOJxoCrJ8lclfsIYel6&#xa;ebbDMd+vfGkEVuTHNppeVHJFaOYIkbIbeM1m0lcwp95VZTcgbQIDAQABo4IBgDCC&#xa;AXwwGAYDVR0RBBEwD4INd3d3Lm9yYW5nZS5zbjAJBgNVHRMEAjAAMA4GA1UdDwEB&#xa;/wQEAwIFoDAoBgNVHSUEITAfBggrBgEFBQcDAQYIKwYBBQUHAwIGCWCGSAGG+EIE&#xa;ATBDBgNVHSAEPDA6MDgGCmCGSAGG+EUBBzYwKjAoBggrBgEFBQcCARYcaHR0cHM6&#xa;Ly93d3cudmVyaXNpZ24uY29tL2NwczAfBgNVHSMEGDAWgBTXm3zYIqAV992tX84p&#xa;m1jDvEYAtTBBBgNVHR8EOjA4MDagNKAyhjBodHRwOi8vU1ZSSW50bC1HMy1jcmwu&#xa;dmVyaXNpZ24uY29tL1NWUkludGxHMy5jcmwwcgYIKwYBBQUHAQEEZjBkMCQGCCsG&#xa;AQUFBzABhhhodHRwOi8vb2NzcC52ZXJpc2lnbi5jb20wPAYIKwYBBQUHMAKGMGh0&#xa;dHA6Ly9TVlJJbnRsLUczLWFpYS52ZXJpc2lnbi5jb20vU1ZSSW50bEczLmNlcjAN&#xa;BgkqhkiG9w0BAQUFAAOCAQEAhmJRr/3LYNbhGEE16asmD2KQgxGPCzdH4i7k9JGy&#xa;TOlxnDCwF7Q8/q0gner/SY4054DIKrgr5rPiAh9HBjoVFW3aMqlW4ESy6TnbA7IH&#xa;+1gqy1KB7YIx5WvUG07LDL+R4uHmuFz8Tv2p/CFPlH3UfVeiAf33M2iyso0TM2Rp&#xa;zQfiJuJb8igvSwA30aAOL+bv991qylZRvl0zNqCwLA2JnTRGnptETByH+9/epGZs&#xa;JB1ikx4rruvYqW3MxxJ7LVgjbqOqBHaAa0dvAKQKkaEOFkj7t8YhDChch6PUJHVW&#xa;MnvFU1MNiQ6OCiqGCWldhH090r15iwaA0UtIhSJ9pzNQcA==&#xa;-&#45;&#45;&#45;&#45;END
+                        CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+                </script>
+                <script id="ssl-enum-ciphers"
+                    output="&#xa;  SSLv3: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_DES_CBC_SHA - weak&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_DES_CBC_SHA - weak&#xa;      TLS_RSA_WITH_RC4_128_MD5 - strong&#xa;      TLS_RSA_WITH_RC4_128_SHA - strong&#xa;    compressors: &#xa;      DEFLATE&#xa;      NULL&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_DES_CBC_SHA - weak&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_DES_CBC_SHA - weak&#xa;      TLS_RSA_WITH_RC4_128_MD5 - strong&#xa;      TLS_RSA_WITH_RC4_128_SHA - strong&#xa;    compressors: &#xa;      DEFLATE&#xa;      NULL&#xa;  least strength: weak">
+                    <table key="SSLv3">
+                        <table key="ciphers">
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_DES_CBC_SHA</elem>
+                                <elem key="strength">weak</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_DES_CBC_SHA</elem>
+                                <elem key="strength">weak</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                        </table>
+                        <table key="compressors">
+                            <elem>DEFLATE</elem>
+                            <elem>NULL</elem>
+                        </table>
+                    </table>
+                    <table key="TLSv1.0">
+                        <table key="ciphers">
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_DHE_RSA_WITH_DES_CBC_SHA</elem>
+                                <elem key="strength">weak</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_DES_CBC_SHA</elem>
+                                <elem key="strength">weak</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                            <table>
+                                <elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+                                <elem key="strength">strong</elem>
+                            </table>
+                        </table>
+                        <table key="compressors">
+                            <elem>DEFLATE</elem>
+                            <elem>NULL</elem>
+                        </table>
+                    </table>
+                    <elem key="least strength">weak</elem>
+                </script>
+            </port>
+        </ports>
+        <times srtt="80424" rttvar="46127" to="264932"/>
+    </host>
+    <runstats>
+        <finished time="1411387825" timestr="Mon Sep 22 14:10:25 2014" elapsed="3.42"
+            summary="Nmap done at Mon Sep 22 14:10:25 2014; 1 IP address (1 host up) scanned in 3.42 seconds"
+            exit="success"/>
+        <hosts up="1" down="0" total="1"/>
+    </runstats>
+</nmaprun>
