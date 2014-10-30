@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.xml.bind.JAXBElement;
 
+import org.apache.log4j.Logger;
 import org.cumulus.certificate.model.AtomicStateType;
 import org.cumulus.certificate.model.IndividualTransitionType;
 import org.cumulus.certificate.model.LogicalExpressionType;
@@ -23,8 +24,12 @@ import org.cumulus.certificate.model.test.GeneralCollectorType.Aggregator.TestMe
 import org.cumulus.certificate.model.test.TestCertificationModel;
 import org.cumulus.certificate.model.test.TestMetricsType.TestMetric;
 
+import com.mysql.jdbc.log.Log;
+
 import eu.cumulus.Persistence.DBtables.Certificate;
 import eu.cumulus.Persistence.DBtables.Certificationmodel;
+import eu.cumulus.ServiceInterface.TestManagerInterfaceImplementation;
+import eu.cumulus.init.InitContextListener;
 
 /**
  * @author iridium
@@ -35,8 +40,9 @@ public class CertificationEvaluator {
 	private String LifeCycleState;
 	private HashMap<String,ArrayList<Transition>> transitions;
 	private String cmID;
-	
+	private Logger log;
     public CertificationEvaluator(String xml, String status) {
+    	log = Logger.getLogger(CertificationEvaluator.class);
     	this.LifeCycleState=status;
 		String context = "org.cumulus.certificate.model.test";
 		eu.cumulus.utilities.JaxbUnmarshal unmarshall = new eu.cumulus.utilities.JaxbUnmarshal(xml, context);
@@ -79,7 +85,7 @@ public class CertificationEvaluator {
 			e.printStackTrace();
 		}
 		
-		System.out.println("TransitionCompletate");
+		log.info("Transition Evaluation Complete");
 		
 		/*List<IndividualTransitionType> trs = lc.getTransitions().iterator().next().getTransition();
 		Iterator<IndividualTransitionType> it_trs = trs.iterator();
@@ -130,8 +136,10 @@ public class CertificationEvaluator {
     			values.add(c_stat);
     		}
     	}
+    	log.info("Transition enabled:"+ready);
     	if(ready){
     		try {
+    			log.info("values:"+values.toString()+" expression:"+t.getExpr()+" output:"+t.evaluate(values));
 				return t.evaluate(values);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -145,6 +153,7 @@ public class CertificationEvaluator {
     private void LifeCycleUpdater(){
     	ArrayList<Transition> ts=this.transitions.get(this.LifeCycleState);
     	for(Transition t:ts){
+    		log.info("Checking Transition from "+t.from+" to "+t.to);
     		if((checkTransition(t))&&(!t.getTo().equalsIgnoreCase(this.LifeCycleState))){
     			//make movement
     			EntityManagerFactory factory = Persistence
@@ -160,6 +169,9 @@ public class CertificationEvaluator {
     			if(it_c.hasNext()){
     				cc=it_c.next();
     				cc.setStatus(t.to);
+    				Logger log = Logger.getLogger(CertificationEvaluator.class);
+    				log.info("Changed CERTIFICATE " +cc.getTimestamp()+" status from "+t.from+" to "+t.to);
+    				this.LifeCycleState=t.to;
     				manager.getTransaction().begin();
     				manager.merge(cc);
     				//manager.merge(cc);
@@ -189,7 +201,8 @@ public class CertificationEvaluator {
      * @param value
      */
     public void updateCollector(String c_id,String value){
-    	System.out.println("UPDATED COLLECTOR");
+    	Logger log = Logger.getLogger(TestManagerInterfaceImplementation.class);
+		log.info("Collector:"+ c_id+ " update state to:"+value);
     	Collector checker=this.collectors.get(c_id);
 		value=value.replaceAll("[\n\r]", "");
     	checker.updateAggregator(value);

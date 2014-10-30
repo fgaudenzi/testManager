@@ -1,4 +1,4 @@
-<service name="TestManagerInterfaceImplementation" >
+<service name="TestManagerAPI" >
 	<Description>
 		Please Type your service description here
 	</Description>

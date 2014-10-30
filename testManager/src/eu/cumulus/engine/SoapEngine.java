@@ -1,6 +1,7 @@
 package eu.cumulus.engine;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import javax.servlet.ServletContext;
 import javax.xml.bind.JAXBElement;
 
 import org.apache.log4j.Logger;
-import org.cumulus.certificate.certificate.CertificateType;
+import org.cumulus.certificate.cert.CertificateType;
 import org.cumulus.certificate.model.test.*;
 
 import eu.cumulus.Persistence.DBtables.*;
@@ -30,6 +31,7 @@ import eu.cumulus.testingpkg.MyLog4J;
 //import eu.cumulus.soapResponse.GetCertificate_TestingResponse;
 import eu.cumulus.utilities.ConverterDB_XML;
 import eu.cumulus.utilities.ServletContextGetter;
+
 
 /**
  * @author filippogaudenzi
@@ -241,6 +243,8 @@ public class SoapEngine {
 			cc.setCertType("TEST");
 			cc.setInstantiationDay(new Date());
 			cc.setStatus(cm.getLifecycle().getStateid());
+			
+			cc.setTimestamp(String.valueOf(Calendar.getInstance().getTimeInMillis()));
 			//SEND MESSAGE
 			ServletContextGetter a=new ServletContextGetter();
 			ServletContext servletC = a.getServletContext();
@@ -263,8 +267,8 @@ public class SoapEngine {
 			// create certificate!
 
 			manager.close();
-			return Integer.toString(cc.getId());
-			//return cc.getId();
+			//return Integer.toString(cc.getId());
+			return cc.getTimestamp();
 			}
 
 		}
@@ -278,7 +282,19 @@ public class SoapEngine {
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("testManager");
 		EntityManager manager = factory.createEntityManager();
-		Certificate cc = manager.find(Certificate.class, Integer.parseInt(param));
+		Certificate cc;
+		//Certificate cc = manager.find(Certificate.class, Integer.parseInt(param));
+		//modification for review
+		Query query = manager
+				.createNamedQuery("Certificate.findPerTM").setParameter("tm", param);
+		
+		List<Certificate> ll = query.getResultList();
+		Iterator<Certificate> it_c=ll.iterator();
+		if(it_c.hasNext())
+			cc=it_c.next();
+		else
+			cc=null;
+		
 		if (cc == null) {
 			return "";
 		} else {
@@ -286,7 +302,7 @@ public class SoapEngine {
 			
 			CertificateType xml = cc.toXML();
 			eu.cumulus.utilities.JaxbMarshal jaxbm = new eu.cumulus.utilities.JaxbMarshal(
-					"org.cumulus.certificate.certificate");
+					"org.cumulus.certificate.cert");
 			return jaxbm.getMarshalledString(xml);
 			}
 			
@@ -328,7 +344,7 @@ public class SoapEngine {
 		
 			Iterator<Certificate> it_cc = ll.iterator();
 			eu.cumulus.utilities.JaxbMarshal jaxbm = new eu.cumulus.utilities.JaxbMarshal(
-						"org.cumulus.certificate.certificate");
+						"org.cumulus.certificate.cert");
 			
 			while (it_cc.hasNext()){
 				GetCertificate_TestingResponse element=new GetCertificate_TestingResponse();
@@ -342,6 +358,23 @@ public class SoapEngine {
 			
 	    GetCertificate_TestingResponse[] array=new GetCertificate_TestingResponse[arrayL.size()];
 		return arrayL.toArray(array);
+	}
+	
+	public static void recertifiy(String cmId) {
+		ServletContextGetter a=new ServletContextGetter();
+		ServletContext servletC = a.getServletContext();
+			EntityManagerFactory factory = Persistence
+					.createEntityManagerFactory("testManager");
+			EntityManager manager = factory.createEntityManager();
+			Certificationmodel cm = manager.find(Certificationmodel.class, cmId);
+		String mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
+		RabbitBroadcaster rb=(RabbitBroadcaster)servletC.getAttribute("Rabbit_Sender");
+		try {
+			rb.sendMessage(mess);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

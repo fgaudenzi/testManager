@@ -430,7 +430,7 @@ public class ConverterDB_XML {
 	
 	public static eu.cumulus.certModelXML.certificationSummury.CertificateSummariesType.CertificateSummary toXMLSummurizeObject(Certificate cc) {
 		eu.cumulus.certModelXML.certificationSummury.CertificateSummariesType.CertificateSummary cs = new eu.cumulus.certModelXML.certificationSummury.CertificateSummariesType.CertificateSummary();
-		cs.setCertificateSerialNo(cc.getId());
+		cs.setCertificateSerialNo(Long.parseLong(cc.getTimestamp()));
 
 		cs.setSecurityProperty(cc.getCertificationmodel().getPropertyBean()
 				.getClass_());

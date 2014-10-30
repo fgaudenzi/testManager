@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2014.07.08 alle 10:57:54 AM CEST 
+// Generato il: 2014.10.23 alle 11:27:04 AM CEST 
 //
 
 
@@ -38,8 +38,8 @@ import org.cumulus.certificate.model.CommonCertificationModelType;
  * 
  * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TestCertificationModel", propOrder = {
     "certificationModelTemplateID",
     "collectors",

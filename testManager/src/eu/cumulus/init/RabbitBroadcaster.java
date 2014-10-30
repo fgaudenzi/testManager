@@ -27,7 +27,7 @@ public class RabbitBroadcaster {
     private Logger log;
     
     public RabbitBroadcaster(String host,String virtualhost,String Username,String pwd,int port) throws Exception{
-    	// log=Logger.getLogger(RabbitConsumer.class);
+    	//log=Logger.getLogger(RabbitConsumer.class);
     	 log=Logger.getLogger( RabbitBroadcaster.class);
     	//MySecretPassword
 			
@@ -75,7 +75,7 @@ public class RabbitBroadcaster {
     public void sendMessage(String message) throws Exception{
    
         channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
-        System.out.println(" [x] Sent " + message );
+        //log.info("Sent " + message );
 
       
     }

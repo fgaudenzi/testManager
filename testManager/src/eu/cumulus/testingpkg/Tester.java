@@ -48,7 +48,7 @@ public class Tester {
 			TestManagerHelperMethods tm=new TestManagerHelperMethods("/Users/iridium/Jobs/pythonAgents/testmanager.properties");
 		    //eu.cumulus.init.RabbitBroadcaster rb=new eu.cumulus.init.RabbitBroadcaster("","", "", "", 0);
 			
-			String filePath="/Users/iridium/Documents/workspace/testManager/XMLRepository/CertificationModel/createdCM.xml";
+			String filePath="/Users/iridium/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/1DEB9ACA-F2C8-4356-A709-5C918A5A206D/createdCM-Malaga.xml";
 			//String xml_message="<cm id=\"cm24\"><collector id=\"coll1\"><tot>ehealth.py</tot><TestCases><TestCase><ID>1</ID><Description>TestCase1</Description><TestInstance Operation=\"1\"><Preconditions></Preconditions><HiddenCommunications></HiddenCommunications><Input>admin=admin password=admin1</Input><ExpectedOutput>true</ExpectedOutput><PostConditions></PostConditions></TestInstance><TestInstance Operation=\"2\"><Preconditions>admin-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>username=usertest password=pass1234</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance><TestInstance Operation=\"3\"><Preconditions>admin-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>username=usertest password=xxx</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance><TestInstance Operation=\"4\"><Preconditions>admin-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>username=usertest password=1234pass</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance><TestInstance Operation=\"5\"><Preconditions>admin-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>username=usertest password=password</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance><TestInstance Operation=\"6\"><Preconditions>admin-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>username=usertest password=usertest</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance><TestInstance Operation=\"7\"><Preconditions>admin-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>username=usertest password=testpwd</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance><TestInstance Operation=\"8\"><Preconditions>user-id</Preconditions><HiddenCommunications></HiddenCommunications><Input>lockout=true</Input> <ExpectedOutput>login</ExpectedOutput><PostConditions>true</PostConditions></TestInstance></TestCase></TestCases></collector></cm>";
 			
 			String XML="";
@@ -59,8 +59,7 @@ public class Tester {
 				e.printStackTrace();
 			}
 			
-			
-			String context = "org.cumulus.certificate.model.test";
+			/*String context = "org.cumulus.certificate.model.test";
 			eu.cumulus.utilities.JaxbUnmarshal unmarshall = new eu.cumulus.utilities.JaxbUnmarshal(XML, context);
 			JAXBElement obj = (JAXBElement) unmarshall.getUnmarshalledObject();
 			
@@ -83,14 +82,17 @@ public class Tester {
 				System.out.println(state);
 				}
 			}
-			System.exit(0);;
-			
+			//System.exit(0);;
+			*/
 			 SAXParserFactory  spf = SAXParserFactory.newInstance();
 				spf.setValidating(false);
 				//spf.setNamespaceAware(false);
 				SAXParser saxParser = spf.newSAXParser();
-				saxParser.parse( new InputSource(new StringReader(XML)),new LyfeCycleTransitionsSaxParser());
-							
+				LyfeCycleTransitionsSaxParser tranParser=new LyfeCycleTransitionsSaxParser();
+				saxParser.parse( new InputSource(new StringReader(XML)),tranParser);
+				
+				
+				tranParser.getTransitions();
 		//	new InputSource(new StringReader(xml))
 			
 //			String xml_message=AgentMessageParser.fromCMtoAgentMessage(XML);

@@ -2,6 +2,9 @@ package eu.cumulus.ServiceInterface;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
+import eu.cumulus.init.InitContextListener;
 import eu.cumulus.init.RabbitConsumer;
 
 
@@ -20,7 +23,8 @@ public class TestManagerInterfaceImplementation implements TestManagerInterface{
 		return result;
 	}
 	public  CertModelCreationResponse addCm_Testing(String addCm_TestingParam){
-		
+			Logger log = Logger.getLogger(TestManagerInterfaceImplementation.class);
+			log.info("addCm_Testing called");
 			CertModelCreationResponse result=new CertModelCreationResponse();
 			String response;
 			response=eu.cumulus.engine.SoapEngine
@@ -37,6 +41,7 @@ public class TestManagerInterfaceImplementation implements TestManagerInterface{
 				result.setMessage("error: internal server error - contact administrator");
 				result.setStatus(false);
 			}
+			log.info("addCm_Testing call response:"+ result.getMessage());
 			return result;
 	}
 	@Override
@@ -52,12 +57,16 @@ public class TestManagerInterfaceImplementation implements TestManagerInterface{
 	}
 	@Override
 	public String getPropertyAndTOCsTesting() {
+		Logger log = Logger.getLogger(TestManagerInterfaceImplementation.class);
+		log.info("getPropertyAndTOC called");
 		String response="";
 		response=eu.cumulus.engine.SoapEngine.getPropertiesAndTocs();
 		return response;
 	}
 	@Override
 	public String requestCertificate_Testing(String param) {
+		Logger log = Logger.getLogger(TestManagerInterfaceImplementation.class);
+		log.info("requestCerticate_Testing called with param:"+param);
 		String response ="";
 		response=eu.cumulus.engine.SoapEngine.submitCertificate(param);
 		return response;
@@ -76,8 +85,15 @@ public class TestManagerInterfaceImplementation implements TestManagerInterface{
 	@Override
 	public String getCertificate_Testing(String param) {
 		String result;
+		Logger log = Logger.getLogger(TestManagerInterfaceImplementation.class);
+		log.info("getCertificate_Testing called with param:"+param);
 		result=eu.cumulus.engine.SoapEngine.getCertificate(param);
         return result;
+	}
+	@Override
+	public void recertify(String param) {
+		eu.cumulus.engine.SoapEngine.recertifiy(param);
+		
 	}
 
 }

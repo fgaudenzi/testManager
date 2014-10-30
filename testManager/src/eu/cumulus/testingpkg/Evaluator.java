@@ -10,18 +10,18 @@ public class Evaluator {
 		 
 		// Compile the expression once; relatively slow.
 		 ExpressionEvaluator ee = new ExpressionEvaluator(
-		     "(cfile && (cdb))",                     // expression
+		     "!(cfile)",                     // expression
 		     boolean.class,                           // expressionType
-		     new String[] { "cfile","cdb" },           // parameterNames
-		     new Class[] { boolean.class,boolean.class } // parameterTypes
+		     new String[] { "cfile" },           // parameterNames
+		     new Class[] { boolean.class } // parameterTypes
 		 );
 		  
 		 
 		 // Evaluate it with varying parameter values; very fast.
 		 Boolean res = (Boolean) ee.evaluate(
 		     new Object[] {          // parameterValues
-		         new Boolean(true),
-		         new Boolean(true),
+		         new Boolean(false),
+		         
 		     }
 		 );
 		 //ee.guessParameterNames(scanner)

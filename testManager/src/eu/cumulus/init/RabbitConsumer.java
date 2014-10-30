@@ -121,17 +121,18 @@ public class RabbitConsumer implements Runnable {
 	      QueueingConsumer consumer = new QueueingConsumer(channel);
 	      channel.basicConsume(queueName, true, consumer);
 	      while (true) {
-	          System.out.println("listening");  
+	          log.info("listening on"+queueName);  
 	    	  QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 	            String message = new String(delivery.getBody());
 	            String routingKey = delivery.getEnvelope().getRoutingKey();
 	            //System.out.println("MESSAGE:"+message);
-	            log.info(" [x] Received '" + routingKey + "':'" + message + "'");
+	            log.info("Received '" + routingKey + "':'" + message + "'");
 	            String[] messages=message.split("#");
 	            if(agents.contains(messages[0])){
 	            	log.info("Agent Accepted");
 	            	//find cm and update collector
-	            	//agent1#cumulus:cm:id:test:1#c-login#evidence-1.out$lockout - 5
+	            	
+	            	//agent1#cumulus:cm:id:test:58917#cfile#True
 	            	checkers.get(messages[1]).updateCollector(messages[2], messages[3]);;
 	            }
 	            else log.info("Agent refused");

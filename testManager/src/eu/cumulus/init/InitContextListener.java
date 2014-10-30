@@ -50,16 +50,16 @@ public class InitContextListener implements ServletContextListener{
 			String defaultPath = System.getProperty("user.home") + System.getProperty("file.separator") + 
 	    			".testManager" + System.getProperty("file.separator");
 		    //PropertyConfigurator.configure(defaultPath+"log4j.properties");
-		    PropertyConfigurator.configure("/Users/iridium/Documents/workspace/testManager/LOG4J/log4j.properties");
-			//PropertyConfigurator.configure("/etc/testManager/LOG4J/log4j.properties");
+		    //PropertyConfigurator.configure("/Users/iridium/Documents/workspace/testManager/LOG4J/log4j.properties");
+			PropertyConfigurator.configure("/etc/testManager/LOG4J/log4j.properties");
 		    //ottengo instanza del log
 		    Logger log = Logger.getLogger(InitContextListener.class);
-		    log.error("INIT CONTEXTUALIZATION CHALLENGE");
+		    log.info("INIT CONTEXTUALIZATION CHALLENGE");
 			//TestManagerHelperMethods tmhm=new TestManagerHelperMethods(defaultPath+"testManger.properties");
 			///Users/iridium/Jobs/pythonAgents/testmanager.properties
 		   
-		    TestManagerHelperMethods tmhm=new TestManagerHelperMethods("/Users/iridium/Jobs/pythonAgents/testmanager.properties");
-		    //TestManagerHelperMethods tmhm=new TestManagerHelperMethods("/etc/testManager/testManager.config");
+		    //TestManagerHelperMethods tmhm=new TestManagerHelperMethods("/Users/iridium/Jobs/pythonAgents/testmanager.properties");
+		    TestManagerHelperMethods tmhm=new TestManagerHelperMethods("/etc/testManager/testManager.config");
 			
 			ServletContext context = arg0.getServletContext();
 	        int nr_executors = 1;
@@ -74,7 +74,7 @@ public class InitContextListener implements ServletContextListener{
 	        executor = Executors.newFixedThreadPool(nr_executors,daemonFactory);
 	       }
 	        try{
-	        	 System.out.println("ServletContextListener TestManager started -before consumer create");
+	        	 log.info("ServletContextListener TestManager started -before consumer create");
 	        	 rbmqL=new RabbitConsumer();
 	        	 String agents=TestManagerHelperMethods.getProperty("agents.list", log);
 	        	 String[] agentsList=agents.split(",");
@@ -88,7 +88,7 @@ public class InitContextListener implements ServletContextListener{
 	        	log.fatal("RABBITMQ ERRORS, restart rabbitMQ then restart the service \n"+e.getMessage());
 	        	System.exit(-1);
 	        }
-	        System.out.println("ServletContextListener TestManager started -before consumer start");
+	        log.info("ServletContextListener TestManager started -before consumer start");
 	        executor.submit(rbmqL);
 	        context.setAttribute("Rabbit_Consumer", 
 	        		rbmqL);
@@ -123,7 +123,7 @@ public class InitContextListener implements ServletContextListener{
 					}
     		 }
 	        
-	        System.out.println("ServletContextListener TestManager started-end");
+	        log.info("ServletContextListener TestManager started-end");
 	        //executor.execute(command);
 	          
 		}

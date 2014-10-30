@@ -10,7 +10,7 @@
     <xs:complexType name="TestCertificationModel">
         <xs:complexContent>
             <xs:extension base="cm:CommonCertificationModelType">
-           
+
                 <xs:sequence>
 
                     <xsd:element name="CertificationModelTemplateID" type="xs:string" maxOccurs="1"
@@ -49,16 +49,7 @@
 
     <xs:complexType name="AbstracCollectorType">
         <xs:sequence>
-            <xs:element name="TestCategory">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="Functionality"/>
-                        <xs:enumeration value="Robustness"/>
-                        <xs:enumeration value="ResilienceToAttacks"/>
-                        <xs:enumeration value="PenetrationTest"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
+            <xs:element name="TestCategory" type="xs:string"> </xs:element>
             <xs:element name="Actionability" type="ActionabilityType" minOccurs="0"/>
             <xs:element name="Capability" type="CapabilityType" minOccurs="0"/>
             <xs:element name="TestType" type="xs:string"/>
@@ -80,7 +71,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
-        <xs:attribute name="Id" type="xs:ID" use="required"/>
+        <xs:attribute name="Id" type="xs:string" use="required"/>
     </xs:complexType>
 
     <xs:complexType name="ActionabilityType">
@@ -158,12 +149,12 @@
     </xs:complexType>
 
     <xs:complexType name="ConditionForSomministrationType">
-        <xsd:sequence>
+        <xsd:choice>
             <xs:element name="ThresholdTraffic" type="ThresholdTrafficType"/>
             <xs:element name="Event" type="EventType"/>
             <xs:element name="OtherCondition" type="xs:string"/>
-            <xs:element name="DeltaTime" type="xs:time"/>
-        </xsd:sequence>
+            <xs:element name="DeltaTime" type="xs:duration"/>
+        </xsd:choice>
     </xs:complexType>
     <xs:complexType name="ThresholdTrafficType">
         <xs:attribute name="TrafficType" type="xs:string" use="required"/>

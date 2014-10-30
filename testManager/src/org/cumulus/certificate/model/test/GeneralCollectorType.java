@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2014.07.08 alle 10:57:54 AM CEST 
+// Generato il: 2014.10.23 alle 11:27:04 AM CEST 
 //
 
 
@@ -61,7 +61,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *                 &lt;sequence>
  *                   &lt;element name="TestCase" type="{http://www.cumulus.org/certificate/model/test}TestCaseType" maxOccurs="unbounded" minOccurs="0"/>
  *                 &lt;/sequence>
- *                 &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
@@ -310,7 +310,7 @@ public class GeneralCollectorType {
      *       &lt;sequence>
      *         &lt;element name="TestCase" type="{http://www.cumulus.org/certificate/model/test}TestCaseType" maxOccurs="unbounded" minOccurs="0"/>
      *       &lt;/sequence>
-     *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}string" />
+     *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
      * &lt;/complexType>
@@ -326,7 +326,7 @@ public class GeneralCollectorType {
 
         @XmlElement(name = "TestCase")
         protected List<TestCaseType> testCase;
-        @XmlAttribute(name = "id")
+        @XmlAttribute(name = "id", required = true)
         protected String id;
 
         /**

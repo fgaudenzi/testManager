@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBElement;
 
+import org.apache.log4j.Logger;
 import org.cumulus.certificate.model.InterfaceToT;
 import org.cumulus.certificate.model.TargetOfTestsType;
 import org.cumulus.certificate.model.TargetOfTestsType.ToT;
@@ -22,6 +23,7 @@ import org.cumulus.certificate.model.test.GeneralCollectorType.AbstractCollector
 import org.cumulus.certificate.model.test.TestCaseType;
 import org.cumulus.certificate.model.test.TestInstanceType;
 
+import eu.cumulus.ServiceInterface.TestManagerInterfaceImplementation;
 import eu.cumulus.agentMessageXML.*;
 
 public class AgentMessageParser {
@@ -45,6 +47,9 @@ public class AgentMessageParser {
 	
 	
 	public static String fromCMtoAgentMessage(String XML) {
+		//inizialize Logger
+		Logger log = Logger.getLogger(AgentMessageParser.class);
+		//context for unmarshall cm 
 		String context = "org.cumulus.certificate.model.test";
 		eu.cumulus.utilities.JaxbUnmarshal unmarshall = new eu.cumulus.utilities.JaxbUnmarshal(XML, context);
 		JAXBElement obj = (JAXBElement) unmarshall.getUnmarshalledObject();
@@ -53,18 +58,22 @@ public class AgentMessageParser {
 				.getValue();
 		Cm cm=new Cm();
 		cm.setId(tbcm.getCertificationModelID());
+		//colls contains collector [n] - get collector
 		List<GeneralCollectorType> colls = tbcm.getCollectors().getCollector();
 		Iterator<GeneralCollectorType> it_colls = colls.iterator();
+		//bas contains abastraccollector [n] - get abstrac collector
 		List<AbstracCollectorType> abs = tbcm.getCollectors().getAbstractCollector();
+		//tots contains tot [n]
 		List<ToT> tots = tbcm.getToC().getToTs().getToT();
+		
+		//itarting on collector
 		while(it_colls.hasNext()){
 			Cm.Collector c=new Cm.Collector();
 			GeneralCollectorType gc=it_colls.next();
 			String collector_id=gc.getId();
-			//System.out.println("ANALIZZANDO coll:"+collector_id);
 			c.setId(collector_id);
 			Iterator<ToT> it_tots=tots.iterator();
-			//System.out.println("FINDIG TOT");
+			//binding tot to collector - FINDIG TOT
 			while(it_tots.hasNext()){
 				ToT tot = it_tots.next();
 				//System.out.println(tot.getCollectorRefID());
@@ -73,6 +82,7 @@ public class AgentMessageParser {
 					c.setTot(script.getCall());
 					break;
 				}
+			//we should parse testcase!!!
 			}
 			
 			
@@ -106,7 +116,7 @@ public class AgentMessageParser {
 		eu.cumulus.utilities.JaxbMarshal jax = new eu.cumulus.utilities.JaxbMarshal(
 				"eu.cumulus.agentMessageXML");
 		String result = jax.getMarshalledString(cm);
-		System.out.println(result);
+		log.info("Sent to Agent \n"+result);
 		return result;
 	}
 

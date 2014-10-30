@@ -54,6 +54,6 @@ public interface TestManagerInterface {
      */
     public String getCertificate_Testing(
     		String param);
-            
+    public void recertify(String param);  
     
 }

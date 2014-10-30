@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.cumulus.org/certificate/cert"
-    xmlns:cert="http://www.cumulus.org/certificate/cert">
-
-
-
+    xmlns:cert="http://www.cumulus.org/certificate/cert"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.cumulus.org/certificate/cert file:/Users/iridium/Jobs/testManager/Certicate/certificate.xds">
 
     <xs:element name="Certificate" type="cert:CertificateType"/>
     <xs:complexType name="CertificateType">

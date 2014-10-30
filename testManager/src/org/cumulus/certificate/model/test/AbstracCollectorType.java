@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2014.07.08 alle 10:57:54 AM CEST 
+// Generato il: 2014.10.23 alle 11:27:04 AM CEST 
 //
 
 
@@ -14,11 +14,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -31,16 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="TestCategory">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *               &lt;enumeration value="Functionality"/>
- *               &lt;enumeration value="Robustness"/>
- *               &lt;enumeration value="ResilienceToAttacks"/>
- *               &lt;enumeration value="PenetrationTest"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
+ *         &lt;element name="TestCategory" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Actionability" type="{http://www.cumulus.org/certificate/model/test}ActionabilityType" minOccurs="0"/>
  *         &lt;element name="Capability" type="{http://www.cumulus.org/certificate/model/test}CapabilityType" minOccurs="0"/>
  *         &lt;element name="TestType" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -69,7 +57,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
- *       &lt;attribute name="Id" use="required" type="{http://www.w3.org/2001/XMLSchema}ID" />
+ *       &lt;attribute name="Id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -108,9 +96,6 @@ public class AbstracCollectorType {
     @XmlElement(name = "TestCases", required = true)
     protected AbstracCollectorType.TestCases testCases;
     @XmlAttribute(name = "Id", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
     protected String id;
 
     /**

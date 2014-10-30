@@ -3,10 +3,12 @@ package eu.cumulus.engine;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.codehaus.commons.compiler.CompileException;
 import org.codehaus.janino.ExpressionEvaluator;
 
 public class Transition  {
+	private Logger log;
 	String from,to;
 	private ExpressionEvaluator ev;
 	private String[] param;
@@ -15,6 +17,7 @@ public class Transition  {
 	}
 	private String expr;
 	public Transition(String from,String to,String expr,String[] param) throws Exception{
+		log = Logger.getLogger(Transition.class);
 		this.from=from;
 		this.to=to;
 		this.param=param;
@@ -30,14 +33,16 @@ public class Transition  {
 			     app // parameterTypes
 			 );
 	}
-	public boolean evaluate(ArrayList<Boolean> values) throws Exception {
+	public Boolean evaluate(ArrayList<Boolean> values) throws Exception {
 		Object[] toEv = new Object[values.size()];
 		int i=0;
 		for(Boolean b:values){
 			toEv[i]=b;
+			System.out.print(toEv[i]);
 			i++;
 		}
-		return (Boolean) this.ev.evaluate(toEv);
+		log.info("result="+this.ev.evaluate(toEv));
+		return new Boolean((boolean) this.ev.evaluate(toEv));
 	}
 	public String getFrom() {
 		return from;

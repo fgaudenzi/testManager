@@ -2,7 +2,7 @@
 // Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.2.8-b130911.1802 
 // Vedere <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
-// Generato il: 2014.09.28 alle 01:20:05 PM CEST 
+// Generato il: 2014.10.23 alle 11:27:04 AM CEST 
 //
 
 
@@ -48,9 +48,9 @@ public class ObjectFactory {
     private final static QName _FuncExpr_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "FuncExpr");
     private final static QName _InterfaceOperation_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "InterfaceOperation");
     private final static QName _EffectiveUntil_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "EffectiveUntil");
-    private final static QName _InterfaceSpecTypeExtended_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "Extended");
     private final static QName _InterfaceOperationTypeFault_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "Fault");
     private final static QName _IDListTypeID_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "ID");
+    private final static QName _InterfaceSpecTypeExtended_QNAME = new QName("http://www.slaatsoi.eu/slamodel", "Extended");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: eu.slaatsoi.slamodel
@@ -591,15 +591,6 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link List }{@code <}{@link String }{@code >}{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://www.slaatsoi.eu/slamodel", name = "Extended", scope = InterfaceSpecType.class)
-    public JAXBElement<List<String>> createInterfaceSpecTypeExtended(List<String> value) {
-        return new JAXBElement<List<String>>(_InterfaceSpecTypeExtended_QNAME, ((Class) List.class), InterfaceSpecType.class, ((List<String> ) value));
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link List }{@code <}{@link String }{@code >}{@code >}}
-     * 
-     */
     @XmlElementDecl(namespace = "http://www.slaatsoi.eu/slamodel", name = "Fault", scope = InterfaceOperationType.class)
     public JAXBElement<List<String>> createInterfaceOperationTypeFault(List<String> value) {
         return new JAXBElement<List<String>>(_InterfaceOperationTypeFault_QNAME, ((Class) List.class), InterfaceOperationType.class, ((List<String> ) value));
@@ -612,6 +603,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.slaatsoi.eu/slamodel", name = "ID", scope = IDListType.class)
     public JAXBElement<List<String>> createIDListTypeID(List<String> value) {
         return new JAXBElement<List<String>>(_IDListTypeID_QNAME, ((Class) List.class), IDListType.class, ((List<String> ) value));
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link List }{@code <}{@link String }{@code >}{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.slaatsoi.eu/slamodel", name = "Extended", scope = InterfaceSpecType.class)
+    public JAXBElement<List<String>> createInterfaceSpecTypeExtended(List<String> value) {
+        return new JAXBElement<List<String>>(_InterfaceSpecTypeExtended_QNAME, ((Class) List.class), InterfaceSpecType.class, ((List<String> ) value));
     }
 
 }

@@ -7,10 +7,12 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.cumulus.certificate.certificate.Artifacts;
-import org.cumulus.certificate.certificate.CertificateType;
-import org.cumulus.certificate.certificate.SignatureType;
+import org.cumulus.certificate.cert.Artifacts;
+import org.cumulus.certificate.cert.CertificateInfoType;
+import org.cumulus.certificate.cert.CertificateType;
+import org.cumulus.certificate.cert.SignatureType;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -23,7 +25,8 @@ import java.util.GregorianCalendar;
 @Table(name="CERTIFICATE")
 @NamedQueries({
 	@NamedQuery(name="Certificate.findAll", query="SELECT c FROM Certificate c"),
-	@NamedQuery(name="Certificate.findPerCM", query="SELECT c FROM Certificate c where c.certificationmodel= :cm")})
+	@NamedQuery(name="Certificate.findPerCM", query="SELECT c FROM Certificate c where c.certificationmodel= :cm"),
+	@NamedQuery(name="Certificate.findPerTM", query="SELECT c FROM Certificate c where c.timestamp= :tm")})
 public class Certificate implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +46,17 @@ public class Certificate implements Serializable {
 
 	@Column(length=45)
 	private String status;
+	
+	@Column(length=45)
+	private String timestamp;
 
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 	//bi-directional many-to-one association to Certificationmodel
 	@ManyToOne
 	@JoinColumn(name="TBCM_ID")
@@ -101,10 +114,15 @@ public class Certificate implements Serializable {
 	}
 	public CertificateType toXML(){
 		CertificateType cc=new CertificateType();
-		cc.setCertificateId(String.valueOf(this.id));
+		cc.setCertificateId(String.valueOf(this.timestamp));
 		cc.setCertificateStatus(this.status);
+		
+		CertificateInfoType info=new CertificateInfoType();
+		info.setCertificateType("Test-based");
+		cc.setCertificateInfo(info);
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(this.instantiationDay);
+		cc.setCertificationModelId(this.getCertificationmodel().getId());
 		XMLGregorianCalendar date2;
 		try {
 			date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
@@ -114,7 +132,11 @@ public class Certificate implements Serializable {
 			e.printStackTrace();
 		}
 		if(expirationDate==null){
-			c.setTime(new Date());
+			Calendar cal = Calendar.getInstance();
+			Date today = cal.getTime();
+			cal.add(Calendar.YEAR, 1); // to get previous year add -1
+			Date nextYear = cal.getTime();
+			c.setTime(nextYear);
 		}else
 		c.setTime(expirationDate);
 		try {
