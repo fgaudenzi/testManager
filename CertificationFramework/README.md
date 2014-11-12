@@ -12,6 +12,9 @@ Information for reviewers
 This folder contains all the files you need to better understand the paper ICSE 
 
 
+A running version of our sytem is availabe at
+	http://<>/icsepaper.html
+
 XML SCHEMA
 	
 	CMTemplate.xsd
