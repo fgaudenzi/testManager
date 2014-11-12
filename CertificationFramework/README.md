@@ -12,8 +12,7 @@ Information for reviewers
 This folder contains all the files you need to better understand the paper ICSE 
 
 
-A running version of our sytem is availabe at
-	[a link](http://<>/icsepaper.html)
+A running version of our sytem is available[here](http://unimi.it/icsepaper.html)
 
 XML SCHEMA
 	
