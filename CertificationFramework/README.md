@@ -12,7 +12,7 @@ Information for reviewers
 This folder contains all the files you need to better understand the paper ICSE 
 
 
-A running version of our sytem is available [here](http://unimi.it/icsepaper.html)
+A running version of our sytem is available [here](http://sesar.di.unimi.it/ICSE2015)
 
 XML SCHEMA
 	
