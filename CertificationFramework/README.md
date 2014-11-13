@@ -1,16 +1,12 @@
-ICSE 2015 
-"A Certification Process for Cloud-based Services"
+ICSE 2015 "A Certification Process for Cloud-based Services"
 
 Authors: Marco Anisetti, Claudio A. Ardagna, Ernesto Damiani, Filippo Gaudenzi
 
-Dipartimenti di Informatica
-Università degli Studi di Milano
-Crema, Italy, 26013
+Dipartimento di Informatica Università degli Studi di Milano Crema, Italy, 26013
+
 
 Information for reviewers
-
-This folder contains all the files you need to better understand the paper ICSE 
-
+This page contains the links to the code of our certification framework components and all certification artifacts at their basis.
 
 A running version of our sytem is available [here](http://sesar.di.unimi.it/ICSE2015)
 
