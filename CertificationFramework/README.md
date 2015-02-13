@@ -1,4 +1,4 @@
-ICSE 2015 "A Certification Process for Cloud-based Services"
+"A Certification Framework for Cloud-based Services"(submitted to ISSTA 2015)
 
 Authors: Marco Anisetti, Claudio A. Ardagna, Ernesto Damiani, Filippo Gaudenzi
 
@@ -8,7 +8,7 @@ Dipartimento di Informatica Università degli Studi di Milano Crema, Italy, 2601
 Information for reviewers
 This page contains the links to the code of our certification framework components and all certification artifacts at their basis.
 
-A running version of our sytem is available [here](http://sesar.di.unimi.it/ICSE2015)
+A running version of our sytem is available [here](http://sesar.di.unimi.it/ISSTA2015)
 
 XML SCHEMA
 	
