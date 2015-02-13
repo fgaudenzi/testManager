@@ -1,4 +1,4 @@
-ISSTA 2015 "A Certification Framework for Cloud-based Services"
+"A Certification Framework for Cloud-based Services"(submitted to ISSTA 2015)
 
 Authors: Marco Anisetti, Claudio A. Ardagna, Ernesto Damiani, Filippo Gaudenzi
 
