@@ -67,7 +67,7 @@ Probe
 
 Software
 
-	Software is avaiable at:
+	Software is available at:
 	
 	- Test Manager http://github.com/fgaudenzi/TestManager
 
