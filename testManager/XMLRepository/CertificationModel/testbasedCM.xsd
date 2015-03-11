@@ -43,6 +43,7 @@
                 minOccurs="1"/>
             <xs:element name="Collector" type="GeneralCollectorType" maxOccurs="unbounded">
             </xs:element>
+            <xs:element name="EventBusCollector" type="eventBusCollectorType" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -140,6 +141,8 @@
                     <xs:attribute name="id" type="xs:string" use="required"/>
                 </xs:complexType>
             </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" type="xs:string" name="driver"></xs:element>
+            
         </xs:sequence>
         <xs:attribute name="ExpirationTime" type="xs:gYearMonth"/>
         <xs:attribute name="Descriptor" type="xs:string"/>
@@ -184,5 +187,11 @@
             <!-- <xs:element name="KeyInfo" minOccurs="0"/> -->
         </xs:sequence>
     </xs:complexType>
+    	<xs:complexType name="eventBusCollectorType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="EventId" type="xs:ID"/>
+			<xs:element name="EventCode" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
     <xsd:element name="testBasedCertifcationModel" type="TestCertificationModel"/>
 </xsd:schema>
