@@ -114,13 +114,16 @@ public class InitContextListener implements ServletContextListener{
 	    	    	Certificate cc=it_cc.next();
 	    	    	Certificationmodel cm=cc.getCertificationmodel();
 	    			rbmqL.addCertification(cm.getId(), cm.getXml(),cc.getStatus());
-	    			String mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
-	    			try {
-						rb.sendMessage(mess);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+	    			String[] mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
+	    			for (String m : mess) {
+	    				String message=eu.cumulus.utilities.Celemetry.wrapMessage(m);
+	    				try {
+	    					rb.sendMessage(message);
+	    				} catch (Exception e) {
+	    					// TODO Auto-generated catch block
+	    					e.printStackTrace();
+	    				}
+	    			}
     		 }
 	        
 	        log.info("ServletContextListener TestManager started-end");

@@ -25,13 +25,15 @@ import org.cumulus.certificate.model.test.TestInstanceType;
 
 import eu.cumulus.ServiceInterface.TestManagerInterfaceImplementation;
 import eu.cumulus.agentMessageXML.*;
+import eu.cumulus.agentMessageXML.InputType.Item;
 
 public class AgentMessageParser {
 
 	
 	public static void main(String[] args) {
 		
-		String filePath = "/Users/iridium/Documents/workspace/testManager/XMLRepository/CertificationModel/instance1.xml";
+		String filePath = "/Users/iridium/Documents/workspace/testManager/testManager/XMLRepository/CertificationModel/createdCM-Malaga.xml"; 
+				//"/Users/iridium/Documents/workspace/testManager/XMLRepository/CertificationModel/instance1.xml";
 		//Users/filippogaudenzi/Documents/workspace/CumulusTestManager/XML_Repository/testerCM.xml";
 		String XML = "";
 		try {
@@ -40,13 +42,61 @@ public class AgentMessageParser {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		fromCMtoAgentMessage(XML);
-		
-	}
+		String [] result=fromCMtoAgentMessage(XML);
+		for(String r:result){
+			System.out.println(r);
+			String a = eu.cumulus.utilities.Celemetry.wrapMessage(r);
+			System.out.println(a);
+		}
+		}
+	
+	
+	/*
+	 <collector id="1" cmid="1" probe_driver="EmptyProbeDelay">
+        <TestCases>
+            <TestCase>
+                <ID>1</ID>
+                <Description>TestCase1</Description>
+                <TestInstance Operation="ciccio">
+                    <Preconditions/>
+                    <HiddenCommunications/>
+                    <Input>
+                        <Item key="Input1" value="Value1" />
+                        <Item key="Input2" value="Value2" />
+                    </Input>
+                    <ExpectedOutput/>
+                    <PostConditions/>
+                </TestInstance>  
+                <TestInstance Operation="3">
+                    <Preconditions/>
+                    <HiddenCommunications/>
+                    <Input>
+                        <Item key="Input5" value="Value5" />
+                        <Item key="Input6" value="Value6" />
+                    </Input>
+                    <ExpectedOutput/>
+                    <PostConditions/>
+                </TestInstance>
+                <TestInstance Operation="2">
+                    <Preconditions/>
+                    <HiddenCommunications/>
+                    <Input>
+                        <Item key="Input8" value="Value8" />
+                        <Item key="Input5" value="Value9" />
+                    </Input>
+                    <ExpectedOutput/>
+                    <PostConditions/>
+                </TestInstance>
+            </TestCase>
+        </TestCases>
+        </collector>
+
+	 */
 	
 	
 	
-	public static String fromCMtoAgentMessage(String XML) {
+	
+	public static String[] fromCMtoAgentMessage(String XML) {
 		//inizialize Logger
 		Logger log = Logger.getLogger(AgentMessageParser.class);
 		//context for unmarshall cm 
@@ -56,8 +106,12 @@ public class AgentMessageParser {
 		
 		TestCertificationModel tbcm = (TestCertificationModel) obj
 				.getValue();
-		Cm cm=new Cm();
-		cm.setId(tbcm.getCertificationModelID());
+		
+		//delete CM
+		//Cm cm=new Cm();
+		ArrayList<eu.cumulus.agentMessageXML.Collector> cm=new ArrayList<eu.cumulus.agentMessageXML.Collector>();
+		String CM_ID=tbcm.getCertificationModelID();
+		//cm.setId(tbcm.getCertificationModelID());
 		//colls contains collector [n] - get collector
 		List<GeneralCollectorType> colls = tbcm.getCollectors().getCollector();
 		Iterator<GeneralCollectorType> it_colls = colls.iterator();
@@ -68,10 +122,11 @@ public class AgentMessageParser {
 		
 		//itarting on collector
 		while(it_colls.hasNext()){
-			Cm.Collector c=new Cm.Collector();
+			Collector c=new Collector();
 			GeneralCollectorType gc=it_colls.next();
 			String collector_id=gc.getId();
 			c.setId(collector_id);
+			c.setCmid(CM_ID);
 			Iterator<ToT> it_tots=tots.iterator();
 			//binding tot to collector - FINDIG TOT
 			while(it_tots.hasNext()){
@@ -79,7 +134,7 @@ public class AgentMessageParser {
 				//System.out.println(tot.getCollectorRefID());
 				if(collector_id.equalsIgnoreCase(tot.getCollectorRefID())){
 					InterfaceToT script = tot.getInterface().get(0);
-					c.setTot(script.getCall());
+					c.setProbeDriver(script.getCall());
 					break;
 				}
 			//we should parse testcase!!!
@@ -93,10 +148,10 @@ public class AgentMessageParser {
 			//System.out.println("FINDIG TESTCASES");
 			while (it_abs.hasNext()){
 				AbstracCollectorType ab = it_abs.next();
-				eu.cumulus.agentMessageXML.Cm.Collector.TestCases tc;
+				eu.cumulus.agentMessageXML.Collector.TestCases tc;
 				//System.out.println(ab.getId()+"=="+abs_id);
 				if(ab.getId().equalsIgnoreCase(abs_id)){
-					TestCases tcs = ab.getTestCases();
+			TestCases tcs = ab.getTestCases();
 					tc = convertTestCases(tcs);		
 					c.setTestCases(tc);
 					break;
@@ -109,22 +164,26 @@ public class AgentMessageParser {
 			
 			
 			
-			cm.getCollector().add(c);
+			cm.add(c);
 			
 		}
-		
+		String[] result=new String[cm.size()];
+		int i=0;
+		for(Collector co : cm){
 		eu.cumulus.utilities.JaxbMarshal jax = new eu.cumulus.utilities.JaxbMarshal(
 				"eu.cumulus.agentMessageXML");
-		String result = jax.getMarshalledString(cm);
+		result[i] = jax.getMarshalledString(co);
+		i++;
 		log.info("Sent to Agent \n"+result);
+		}
 		return result;
 	}
 
 
 
-	private static Cm.Collector.TestCases convertTestCases(TestCases tcs) {
+	private static Collector.TestCases convertTestCases(TestCases tcs) {
 		// TODO Auto-generated method stub
-		Cm.Collector.TestCases result=new Cm.Collector.TestCases();
+		Collector.TestCases result=new Collector.TestCases();
 		Iterator<TestCaseType> it_tc = tcs.getTestCase().iterator();
 		while(it_tc.hasNext()){
 			eu.cumulus.agentMessageXML.TestCaseType t=new eu.cumulus.agentMessageXML.TestCaseType();
@@ -136,7 +195,22 @@ public class AgentMessageParser {
 				eu.cumulus.agentMessageXML.TestInstanceType timessage = new eu.cumulus.agentMessageXML.TestInstanceType();
 				timessage.setExpectedOutput(ti.getExpectedOutput());
 				timessage.setHiddenCommunications(ti.getHiddenCommunications());
-				timessage.setInput(ti.getInput());
+				String[] keyvalue=(ti.getInput()).split(" ");
+				InputType i=new InputType();
+				List<eu.cumulus.agentMessageXML.InputType.Item> items=i.getItem();
+				//eu.cumulus.agentMessageXML.InputType.Item[] items=new eu.cumulus.agentMessageXML.InputType.Item[keyvalue.length];
+				
+				for(String elem:keyvalue){
+					String[] kv=elem.split("=");
+					eu.cumulus.agentMessageXML.InputType.Item item=new Item();
+					item=new eu.cumulus.agentMessageXML.InputType.Item();
+					item.setKey(kv[0]);
+					item.setValue(kv[1]);
+					items.add(item);
+					
+				}
+				
+				timessage.setInput(i);
 				timessage.setPostConditions(ti.getPostConditions());
 				timessage.setPreconditions(ti.getPreconditions());
 				timessage.setOperation(ti.getOperation());

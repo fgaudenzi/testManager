@@ -252,12 +252,15 @@ public class SoapEngine {
 			
 			RabbitConsumer rc=(RabbitConsumer)servletC.getAttribute("Rabbit_Consumer");
 			rc.addCertification(cm.getId(), cm.getXml(),cc.getStatus());
-			String mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
+			String[] mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
+			for(String m:mess){
+				String message=eu.cumulus.utilities.Celemetry.wrapMessage(m);
 			try {
-				rb.sendMessage(mess);
+				rb.sendMessage(message);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
 			}
 			manager.getTransaction().begin();
 			manager.persist(cc);
@@ -367,13 +370,16 @@ public class SoapEngine {
 					.createEntityManagerFactory("testManager");
 			EntityManager manager = factory.createEntityManager();
 			Certificationmodel cm = manager.find(Certificationmodel.class, cmId);
-		String mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
+		String[] mess=AgentMessageParser.fromCMtoAgentMessage(cm.getXml());
 		RabbitBroadcaster rb=(RabbitBroadcaster)servletC.getAttribute("Rabbit_Sender");
-		try {
-			rb.sendMessage(mess);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (String m : mess) {
+			String message=eu.cumulus.utilities.Celemetry.wrapMessage(m);
+			try {
+				rb.sendMessage(message);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

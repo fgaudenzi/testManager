@@ -11,9 +11,11 @@ import javax.net.ssl.TrustManagerFactory;
 
 import org.apache.log4j.Logger;
 
+import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.AMQP;
 
 import eu.cumulus.utilities.TestManagerHelperMethods;
 
@@ -23,17 +25,19 @@ public class RabbitBroadcaster {
 
 	private Channel channel;
 	private Connection connection;
-    private static final String EXCHANGE_NAME = "broadcast_to_agent";
-    private Logger log;
+   // private static final String EXCHANGE_NAME = "broadcast_to_agent";
+	private static final String EXCHANGE_NAME = "celery";
+	private Logger log;
     
     public RabbitBroadcaster(String host,String virtualhost,String Username,String pwd,int port) throws Exception{
     	//log=Logger.getLogger(RabbitConsumer.class);
     	 log=Logger.getLogger( RabbitBroadcaster.class);
     	//MySecretPassword
-			
+		
  		char[] keyPassphrase = TestManagerHelperMethods.getProperty("rabbit.certificate-pwd", log).toCharArray();
  	      KeyStore ks = KeyStore.getInstance("PKCS12");
  	      ks.load(new FileInputStream(TestManagerHelperMethods.getProperty("rabbit.certificate", log)),keyPassphrase);
+ 	      
  	      // ks.load(new FileInputStream("/Users/iridium/Jobs/client/keycert.p12"), keyPassphrase);
 
  	      KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
@@ -55,7 +59,8 @@ public class RabbitBroadcaster {
     	factory.setHost(TestManagerHelperMethods.getProperty("rabbit.defaultHost", log));
 	      factory.setVirtualHost(TestManagerHelperMethods.getProperty("rabbit.virtualHost", log));
 	      factory.setPort(Integer.parseInt(TestManagerHelperMethods.getProperty("rabbit.defaultPort", log)));
-	      factory.useSslProtocol(c);
+	      // unsecure connection
+	      // factory.useSslProtocol(c);
 	      factory.setUsername(TestManagerHelperMethods.getProperty("rabbit.username", log));
 	      factory.setPassword(TestManagerHelperMethods.getProperty("rabbit.password", log));
     	
@@ -68,14 +73,42 @@ public class RabbitBroadcaster {
 	      factory.setPassword("pass1234");*/
         this.connection = factory.newConnection();
         this.channel = connection.createChannel();
+        
+        
+        
+        
+        try {
+            channel.queueDeclare("celery",true,false,false,null);
+        } catch (IOException ioe) {
+            log.error("Unable to declare queue for MQ channel.", ioe) ;
+        }
 
-        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        try {
+        	
+            channel.exchangeDeclare("celery", "direct",true) ;
+        } catch (IOException ioe) {
+            log.error("Unable to declare exchange for MQ channel.", ioe) ;
+        }
+
+        try {
+            channel.queueBind("celery", "celery", "celery") ;
+        } catch (IOException ioe) {
+            log.error("Unable to bind queue for channel.", ioe) ;
+        }
+        
+        
+        
+        
+       // channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+       // channel.exchangeDeclare(EXCHANGE_NAME, "direct");
     }
     
     public void sendMessage(String message) throws Exception{
-   
-        channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
-        //log.info("Sent " + message );
+    	//BasicProperties props =  
+    	BasicProperties props;
+    	props= new BasicProperties.Builder().contentType("application/json").build();
+        channel.basicPublish(EXCHANGE_NAME, "celery", props, message.getBytes());
+        log.info("Sent to Agent: " + message );
 
       
     }

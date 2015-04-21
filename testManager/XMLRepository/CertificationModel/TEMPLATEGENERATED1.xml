@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:testBasedCertifcationModel xmlns:sch="http://www.ascc.net/xml/schematron"
+ xmlns:cm="http://www.cumulus.org/certificate/model"
+ xmlns:test="http://www.cumulus.org/certificate/model/test"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.cumulus.org/certificate/model/test file:/Users/iridium/Documents/workspace/testManager/testManager/XMLRepository/CertificationModel/CMTemplate.xsd">
+    <CertificationModelTemplateID></CertificationModelTemplateID>
+    <Collectors>
+        <AbstractCollector Id="">
+            <TestCategory></TestCategory>
+            <TestType></TestType>
+            <TestDescription></TestDescription>
+            <TestGenerationModelLink>http://www.cumulus-project.eu</TestGenerationModelLink>
+            <TestAttributes>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+            </TestAttributes>
+            <TestCases>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+            </TestCases>
+        </AbstractCollector>
+        <AbstractCollector Id="">
+            <TestCategory></TestCategory>
+            <TestType></TestType>
+            <TestDescription></TestDescription>
+            <TestGenerationModelLink>http://www.cumulus-project.eu</TestGenerationModelLink>
+            <TestAttributes>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+                <TestAttribute>
+                    <ID></ID>
+                    <Name></Name>
+                    <Value>
+                    </Value>
+                </TestAttribute>
+            </TestAttributes>
+            <TestCases>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+                <TestCase>
+                    <ID></ID>
+                    <Description></Description>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                    <TestInstance Operation="">
+                        <Preconditions></Preconditions>
+                        <HiddenCommunications></HiddenCommunications>
+                        <Input></Input>
+                        <ExpectedOutput></ExpectedOutput>
+                        <PostConditions></PostConditions>
+                    </TestInstance>
+                </TestCase>
+            </TestCases>
+        </AbstractCollector>
+    </Collectors>
+    <Signature>
+        <Name></Name>
+        <Role></Role>
+    </Signature>
+    <ToC>
+        <CloudLayer></CloudLayer>
+        <CloudLayer></CloudLayer>
+        <ConcreteToc></ConcreteToc>
+        <TocDescription></TocDescription>
+    </ToC>
+    <SecurityProperty SecurityPropertyDefinition="">
+        <sProperty class="">
+            <propertyPerformance>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                </propertyPerformanceRow>
+                <propertyPerformanceRow>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                    <propertyPerformanceCell name=""></propertyPerformanceCell>
+                </propertyPerformanceRow>
+            </propertyPerformance>
+            <propertyParameterList>
+            </propertyParameterList>
+        </sProperty>
+    </SecurityProperty>
+</test:testBasedCertifcationModel>

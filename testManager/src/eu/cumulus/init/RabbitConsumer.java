@@ -82,7 +82,7 @@ public class RabbitConsumer implements Runnable {
    	factory.setHost(TestManagerHelperMethods.getProperty("rabbit.defaultHost", log));
 	      factory.setVirtualHost(TestManagerHelperMethods.getProperty("rabbit.virtualHost", log));
 	      factory.setPort(Integer.parseInt(TestManagerHelperMethods.getProperty("rabbit.defaultPort", log)));
-	      factory.useSslProtocol(c);
+	      //factory.useSslProtocol(c);
 	      factory.setUsername(TestManagerHelperMethods.getProperty("rabbit.username", log));
 	      factory.setPassword(TestManagerHelperMethods.getProperty("rabbit.password", log));
 		 
@@ -111,10 +111,22 @@ public class RabbitConsumer implements Runnable {
 		
 		try{
 			
-
+			  try {
+		        	
+		            channel.exchangeDeclare(EXCHANGE_NAME, "direct",true) ;
+		        } catch (IOException ioe) {
+		            log.error("Unable to declare exchange for MQ channel.", ioe) ;
+		        }
 	     
-	      channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-	      String queueName = channel.queueDeclare().getQueue();
+			  try {
+				  
+		            channel.queueDeclare(EXCHANGE_NAME,true,false,false,null);
+		        } catch (IOException ioe) {
+		            log.error("Unable to declare queue for MQ channel.", ioe) ;
+		        }
+	      //channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+	      //String queueName = channel.queueDeclare().getQueue();
+			  String queueName=EXCHANGE_NAME;
 	      System.out.println(queueName);
 	      String severity = "key-test";
 	      channel.queueBind(queueName, EXCHANGE_NAME, severity);
@@ -128,6 +140,10 @@ public class RabbitConsumer implements Runnable {
 	            //System.out.println("MESSAGE:"+message);
 	            log.info("Received '" + routingKey + "':'" + message + "'");
 	            String[] messages=message.split("#");
+	            for(String a:agents){
+	            	log.info("agent:"+a);
+	            }
+	            log.info(messages[0]);
 	            if(agents.contains(messages[0])){
 	            	log.info("Agent Accepted");
 	            	//find cm and update collector

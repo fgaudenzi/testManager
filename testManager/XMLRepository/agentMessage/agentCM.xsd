@@ -1,10 +1,7 @@
 <xs:schema attributeFormDefault="unqualified"
 	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	<xs:element name="cm">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="collector" maxOccurs="unbounded"
-					minOccurs="0">
+	
+				<xs:element name="collector">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="TestCases">
@@ -15,14 +12,13 @@
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
-						<xs:attribute type="xs:string" name="tot" />
+						<xs:attribute type="xs:string" name="probe_driver" />
 						<xs:attribute type="xs:string" name="id" />
+						<xs:attribute type="xs:string" name="cmid" />
 					</xs:complexType>
 				</xs:element>
-			</xs:sequence>
-			<xs:attribute type="xs:string" name="id" />
-		</xs:complexType>
-	</xs:element>
+		
+			
 
 
 	<xs:complexType name="TestCaseType">
@@ -37,10 +33,20 @@
 		<xs:sequence>
 			<xs:element name="Preconditions" type="xs:string" />
 			<xs:element name="HiddenCommunications" type="xs:string" />
-			<xs:element name="Input" type="xs:string" />
+			<xs:element name="Input" type="InputType" />
 			<xs:element name="ExpectedOutput" type="xs:string" />
 			<xs:element name="PostConditions" type="xs:string" />
 		</xs:sequence>
 		<xs:attribute name="Operation" type="xs:string" use="required" />
+	</xs:complexType>
+	<xs:complexType name="InputType">
+	<xs:sequence>
+	<xs:element name="Item" maxOccurs="unbounded">
+		<xs:complexType>
+		<xs:attribute type="xs:string" name="key" use="required"/>
+		<xs:attribute type="xs:string" name="value" />
+		</xs:complexType>
+	</xs:element>
+	</xs:sequence>
 	</xs:complexType>
 </xs:schema>

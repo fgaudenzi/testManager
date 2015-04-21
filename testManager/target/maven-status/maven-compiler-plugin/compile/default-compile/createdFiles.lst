@@ -1,5 +1,4 @@
 org/cumulus/certificate/model/TocType$ToM.class
-eu/cumulus/agentMessageXML/Cm.class
 eu/cumulus/graphTeste/DataExtensionType.class
 org/cumulus/certificate/model/test/TestMetricsType$TestMetric.class
 back/org/cumulus/certificate/test/GeneralCollectorType$Aggregator$TestMetrics.class
@@ -17,11 +16,10 @@ eu/slaatsoi/slamodel/OperativeType.class
 org/cumulus/certificate/model/ConstantType.class
 eu/cumulus/Persistence/DBtables/Transition.class
 eu/cumulus/testingpkg/ObjectFactory.class
-back/org/cumulus/certificate/test/CapabilityType.class
 org/cumulus/certificate/model/HistoryStateType.class
+back/org/cumulus/certificate/test/CapabilityType.class
 back/org/cumulus/certificate/test/GeneralCollectorType$Aggregator.class
 org/cumulus/certificate/model/ActionType.class
-eu/cumulus/agentMessageXML/Cm$Collector.class
 org/cumulus/certificate/model/test/GeneralCollectorType.class
 org/cumulus/certificate/model/StateActionType.class
 eu/cumulus/graphTeste/GraphNodeidsType.class
@@ -69,7 +67,6 @@ eu/slaatsoi/slamodel/InterfaceDeclrType.class
 back/org/cumulus/certificate/test/GeneralCollectorType.class
 eu/cumulus/Persistence/DBtables/Certificationmodel.class
 eu/cumulus/ServiceInterface/CertModelCreationResponse.class
-eu/cumulus/agentMessageXML/Cm$Collector$TestCases.class
 eu/cumulus/testingpkg/TestingAPI.class
 org/cumulus/certificate/model/test/GeneralCollectorType$Aggregator.class
 eu/slaatsoi/slamodel/GuaranteedActionDefnType.class
@@ -98,8 +95,8 @@ eu/cumulus/testingpkg/ParallelTester.class
 eu/cumulus/init/RabbitConsumer.class
 eu/cumulus/graphTeste/NodeType.class
 eu/slaatsoi/slamodel/package-info.class
-eu/cumulus/engine/CertificationEvaluator$Collector.class
 org/cumulus/certificate/model/EvidenceRefOperandType.class
+eu/cumulus/engine/CertificationEvaluator$Collector.class
 eu/cumulus/engine/AgentMessageParser.class
 eu/slaatsoi/slamodel/SLATemplate.class
 eu/cumulus/testingpkg/DemoBase.class
