@@ -43,7 +43,7 @@
                 minOccurs="1"/>
             <xs:element name="Collector" type="GeneralCollectorType" maxOccurs="unbounded">
             </xs:element>
-            <xs:element name="EventBusCollector" type="eventBusCollectorType" minOccurs="0"/>
+          
         </xs:sequence>
     </xs:complexType>
 

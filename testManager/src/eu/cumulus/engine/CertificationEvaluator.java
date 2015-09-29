@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +22,7 @@ import org.cumulus.certificate.model.StatesType;
 import org.cumulus.certificate.model.TransitionsType;
 import org.cumulus.certificate.model.test.GeneralCollectorType;
 import org.cumulus.certificate.model.test.GeneralCollectorType.Aggregator.TestMetrics;
+import org.cumulus.certificate.model.test.TestCaseType;
 import org.cumulus.certificate.model.test.TestCertificationModel;
 import org.cumulus.certificate.model.test.TestMetricsType.TestMetric;
 
@@ -120,6 +122,10 @@ public class CertificationEvaluator {
 	}
 
 */
+    
+    
+   
+    
 	/**
      * 
      */
@@ -170,6 +176,17 @@ public class CertificationEvaluator {
     				cc=it_c.next();
     				cc.setStatus(t.to);
     				Logger log = Logger.getLogger(CertificationEvaluator.class);
+    				
+    				
+    				//audiModule
+    				try{
+    					
+    				}catch(Exception e){
+    					System.out.println(e);
+    				}
+    				
+    				
+    				
     				log.info("Changed CERTIFICATE " +cc.getTimestamp()+" status from "+t.from+" to "+t.to);
     				this.LifeCycleState=t.to;
     				manager.getTransaction().begin();
@@ -202,6 +219,11 @@ public class CertificationEvaluator {
      */
     public void updateCollector(String c_id,String value){
     	Logger log = Logger.getLogger(TestManagerInterfaceImplementation.class);
+    	
+    	//TODO AUDIT
+    	
+    	
+    	
 		log.info("Collector:"+ c_id+ " update state to:"+value);
     	Collector checker=this.collectors.get(c_id);
 		value=value.replaceAll("[\n\r]", "");
@@ -300,6 +322,26 @@ public class CertificationEvaluator {
 			}
 			return false;
 		}
+	}
+
+	public void resetStatus(
+			HashMap<GeneralCollectorType, ArrayList<TestCaseType>> toRun) {
+		for(Entry<GeneralCollectorType, ArrayList<TestCaseType>> elem: toRun.entrySet()){
+			GeneralCollectorType key=elem.getKey();
+			Collector col=collectors.get(key.getId());
+			if(col!=null){
+			col.Status=null;
+			}else{
+				GeneralCollectorType.Aggregator agg=key.getAggregator();
+				List<TestMetric> tm = agg.getTestMetrics().getTestMetric();
+				Iterator<TestMetric> it_tm=tm.iterator();
+				TestMetric values=it_tm.next();
+				this.collectors.put(key.getId(), 
+				new Collector(key.getId(), new Aggregator(values.getExpected(),values.getOperation())));
+			}
+		}
+			
+		
 	}
 
 }

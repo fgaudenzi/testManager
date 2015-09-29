@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:testBasedCertifcationModel
+	xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:ec="http://slasoi.org/monitoring/citymonitor/xmlrule"
+	xmlns:sla="http://www.slaatsoi.eu/slamodel" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:cm="http://www.cumulus.org/certificate/model" xmlns:test="http://www.cumulus.org/certificate/model/test"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cumulus.org/certificate/model/test file:/Users/iridium/Jobs/testManager/CumulusTestManager/XML_Repository/testbasedCM.xsd">
+	<CertificationModelID>cumulus:cm:id:test:190302</CertificationModelID>
+	<LifeCycle>
+		<InitialState stateId="not_issued" />
+		<states>
+			<state>
+				<atomicState stateId="not_issued" name="not issued" />
+			</state>
+			<state>
+				<atomicState stateId="issued" name="issued" />
+			</state>
+			<state>
+				<atomicState stateId="suspended" name="suspended" />
+			</state>
+			<state>
+				<atomicState stateId="expired" name="expired" />
+			</state>
+			<state>
+				<atomicState stateId="revoked" name="revoked" />
+			</state>
+		</states>
+		<transitions>
+			<transition From="not_issued" To="issued">
+				<WhenCondition>
+					<Condition>
+						<collectorCondition>cNessus</collectorCondition>
+					</Condition>
+					<LogicalOperator>AND</LogicalOperator>
+					<LogicalExpression>
+						<Condition>
+							<collectorCondition>cCertificateTC</collectorCondition>
+						</Condition>
+					</LogicalExpression>
+				</WhenCondition>
+			</transition>
+			<transition From="issued" To="revoked">
+				<WhenCondition negated="true">
+					<Condition>
+						<collectorCondition>cNessus</collectorCondition>
+					</Condition>
+					<LogicalOperator>AND</LogicalOperator>
+					<LogicalExpression>
+						<Condition>
+							<collectorCondition>cCertificateTC</collectorCondition>
+						</Condition>
+					</LogicalExpression>
+				</WhenCondition>
+			</transition>
+			<transition From="revoked" To="issued">
+				<WhenCondition>
+					<Condition>
+						<collectorCondition>cNessus</collectorCondition>
+					</Condition>
+					<LogicalOperator>AND</LogicalOperator>
+					<LogicalExpression>
+						<Condition>
+							<collectorCondition>cCertificateTC</collectorCondition>
+						</Condition>
+					</LogicalExpression>
+				</WhenCondition>
+			</transition>
+
+		</transitions>
+	</LifeCycle>
+	<Signature>
+		<Name>Unimi</Name>
+		<Role>Accredited Lab</Role>
+	</Signature>
+
+	<ToC Id="Openstack UNIMI">
+		<CloudLayer>Infrastructure</CloudLayer>
+		<ConcreteToc>Openstack Deployment at UNIMI</ConcreteToc>
+		<TocDescription>Infrastructure as a Service Oenstack version Juno</TocDescription>
+		<TocURI>http://172.25.27.69/</TocURI>
+		<ToTs>
+			<ToT collectorRefID="cCertficateTC">
+				<Interface stateRef="*">
+					<type>TC certificate Checker</type>
+					<call>certifyCumulusTC</call>
+				</Interface>
+			</ToT>
+			<ToT collectorRefID="cChannel">
+				<Interface stateRef="*">
+					<type>Nessus Vulnerability Scanner</type>
+					<call>nessus</call>
+				</Interface>
+			</ToT>
+		</ToTs>
+	</ToC>
+
+	<SecurityProperty SecurityPropertyDefinition="This property describes the vulnerability exposure level of the TOC in terms of numbers of vulnerabilities found, numbers of vulnerabilities tested, and numbers of vulnerabilities that are relevant to the platform/softwareoftheTOC.">
+		<sProperty class="TVM:vulnerability-management-quality:vulnerability-exposure-level">
+			<propertyPerformance>
+				<propertyPerformanceRow>
+					<propertyPerformanceCell name="countReferenc">all
+					</propertyPerformanceCell>
+				</propertyPerformanceRow>
+			</propertyPerformance>
+			<propertyParameterList />
+		</sProperty>
+	</SecurityProperty>
+
+	<CertificationModelTemplateID>cumulus:cm:template:test:03
+	</CertificationModelTemplateID>
+
+	<Collectors>
+		<AbstractCollector Id="0">
+			<TestCategory>Functionality.Input partitioning</TestCategory>
+			<TestType>Equivalence Partioning</TestType>
+			<TestDescription>Check for integrity of Operating System
+			</TestDescription>
+			<TestGenerationModelLink>www.cumulus-project.eu/tc.sts
+			</TestGenerationModelLink>
+			<TestAttributes>
+				<TestAttribute>
+					<ID>1</ID>
+					<Name>testAttribute</Name>
+					<Value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">STORAGE
+						ENCRIPTION</Value>
+				</TestAttribute>
+			</TestAttributes>
+
+			<TestCases>
+				<TestCase>
+					<ID>1</ID>
+					<Description>get certificate status from cumulus repository
+					</Description>
+					<TestInstance Operation="Configuration">
+						<Input>TOC=UNIMI-Openstack property=encrypted-storage</Input>
+						<expectedoutput>ISSUED</expectedoutput>
+					</TestInstance>
+
+				</TestCase>
+
+			</TestCases>
+		</AbstractCollector>
+
+		<Collector Descriptor="get certificate for given toc and property"
+			Id="cCertificate" isStatic="false" toDeploy="true">
+			<ConditionForSomministration>
+
+			</ConditionForSomministration>
+			<Aggregator AggregatorDescription="alltrue" transient="1">
+				<TestMetrics>
+					<TestMetric name="eachtestcase">
+						<expected>true</expected>
+						<tested></tested>
+						<operation>=</operation>
+					</TestMetric>
+				</TestMetrics>
+			</Aggregator>
+			<AbstractCollectorRef id="0" />
+		</Collector>
+
+
+
+		<AbstractCollector Id="0">
+			<TestCategory>Functionality.Input partitioning</TestCategory>
+			<TestType>Equivalence Partioning</TestType>
+			<TestDescription>check Security Group Management</TestDescription>
+			<TestGenerationModelLink>www.cumulus-project.eu/channelhttps.sts
+			</TestGenerationModelLink>
+			<TestAttributes>
+				<TestAttribute>
+					<ID>1</ID>
+					<Name>testAttribute</Name>
+					<Value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Wellness web
+						channel</Value>
+				</TestAttribute>
+			</TestAttributes>
+
+			<TestCases>
+				<TestCase>
+					<ID>1</ID>
+					<Description>Check SSL/TSL channel enabled</Description>
+					<TestInstance Operation="Configuration">
+						<Input>uri=https://cumulus-project.sytes.net:11080</Input>
+					</TestInstance>
+				</TestCase>
+
+			</TestCases>
+		</AbstractCollector>
+
+		<Collector Descriptor="check TSL/SSL" Id="cChannel"
+			isStatic="false" toDeploy="true">
+			<ConditionForSomministration>
+
+			</ConditionForSomministration>
+			<Aggregator AggregatorDescription="alltrue" transient="1">
+				<TestMetrics>
+					<TestMetric name="eachtestcase">
+						<expected>true</expected>
+						<tested></tested>
+						<operation>=</operation>
+					</TestMetric>
+				</TestMetrics>
+			</Aggregator>
+			<AbstractCollectorRef id="0" />
+		</Collector>
+
+	</Collectors>
+</test:testBasedCertifcationModel>

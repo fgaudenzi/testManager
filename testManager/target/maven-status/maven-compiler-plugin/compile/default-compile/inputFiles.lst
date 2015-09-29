@@ -4,6 +4,7 @@
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/Persistence/DBtables/Signature.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/back/org/cumulus/certificate/test/CapabilityType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/CompositeStateType.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/auditmodule/testerAudit.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/graphTeste/GraphType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/certModelXML/certificationSummury/ObjectFactory.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/test/GeneralCollectorType.java
@@ -37,6 +38,7 @@
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/ParallelTester.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/TestManagerInterface.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/HistoryStateType.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/testerAudit.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/IndividualTransitionType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/certModelXML/PropertiesAndTocs/PropertyType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/MyLog4J.java
@@ -91,8 +93,8 @@
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/TargetOfTestsType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/ValueExprType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/graphTeste/HyperedgeType.java
-/Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/ServiceInterface/TestManagerInterfaceImplementation.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/test/package-info.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/ServiceInterface/TestManagerInterfaceImplementation.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/InterfaceSpecType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/back/org/cumulus/certificate/test/package-info.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/certModelXML/certificationSummury/CertificateSummariesType.java
@@ -142,6 +144,7 @@
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/PropertyType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/TestingAPI.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/test/TestCertificationModel.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/engine/AdvanceCertification.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/graphTeste/DataType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/GuaranteedActionDefnType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/back/org/cumulus/certificate/test/EventType.java
@@ -156,6 +159,7 @@
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/ComponentProdOfferingPriceType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/IDListType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/graphTeste/KeyType.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/XMLCompare.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/engine/SoapEngine.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/testingpkg/Example2.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/StndAnyEntryType.java
@@ -185,9 +189,9 @@
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/graphTeste/PortType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/TerminationClauseType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/AgreementPartyType.java
-/Users/iridium/Documents/workspace/testManager/testManager/src/back/org/cumulus/certificate/test/CollectorType.java
-/Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/PenaltyActionType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/cert/package-info.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/PenaltyActionType.java
+/Users/iridium/Documents/workspace/testManager/testManager/src/back/org/cumulus/certificate/test/CollectorType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/org/cumulus/certificate/model/StateActionType.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/cumulus/graphTeste/package-info.java
 /Users/iridium/Documents/workspace/testManager/testManager/src/eu/slaatsoi/slamodel/GuaranteedActionType.java

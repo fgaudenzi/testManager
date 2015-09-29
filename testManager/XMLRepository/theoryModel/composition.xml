@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:testBasedCertifcationModel
+	xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:ec="http://slasoi.org/monitoring/citymonitor/xmlrule"
+	xmlns:sla="http://www.slaatsoi.eu/slamodel" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:cm="http://www.cumulus.org/certificate/model" xmlns:test="http://www.cumulus.org/certificate/model/test"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cumulus.org/certificate/model/test file:/Users/iridium/Jobs/testManager/CumulusTestManager/XML_Repository/testbasedCM.xsd">
+	<CertificationModelID>cumulus:cm:id:test:250415</CertificationModelID>
+	<LifeCycle>
+		<InitialState stateId="not_issued" />
+		<states>
+			<state>
+				<atomicState stateId="not_issued" name="not issued" />
+			</state>
+			<state>
+				<atomicState stateId="issued" name="issued" />
+			</state>
+			<state>
+				<atomicState stateId="suspended" name="suspended" />
+			</state>
+			<state>
+				<atomicState stateId="expired" name="expired" />
+			</state>
+			<state>
+				<atomicState stateId="revoked" name="revoked" />
+			</state>
+		</states>
+		<transitions>
+			<transition From="not_issued" To="issued">
+				<WhenCondition>
+					<Condition>
+						<collectorCondition>cCertificate1</collectorCondition>
+					</Condition>
+					<LogicalOperator>AND</LogicalOperator>
+					<LogicalExpression>
+						<Condition>
+							<collectorCondition>cCertificate2</collectorCondition>
+						</Condition>
+					</LogicalExpression>
+				</WhenCondition>
+			</transition>
+			<transition From="issued" To="revoked">
+				<WhenCondition negated="true">
+					<Condition>
+						<collectorCondition>cCertificate1</collectorCondition>
+					</Condition>
+					<LogicalOperator>AND</LogicalOperator>
+					<LogicalExpression>
+						<Condition>
+							<collectorCondition>cCertificate2</collectorCondition>
+						</Condition>
+					</LogicalExpression>
+				</WhenCondition>
+			</transition>
+			<transition From="revoked" To="issued">
+				<WhenCondition>
+					<Condition>
+						<collectorCondition>cCertificate1</collectorCondition>
+					</Condition>
+					<LogicalOperator>AND</LogicalOperator>
+					<LogicalExpression>
+						<Condition>
+							<collectorCondition>cCertificate2</collectorCondition>
+						</Condition>
+					</LogicalExpression>
+				</WhenCondition>
+			</transition>
+
+		</transitions>
+	</LifeCycle>
+	<Signature>
+		<Name>Unimi</Name>
+		<Role>Accredited Lab</Role>
+	</Signature>
+
+	<ToC Id="Welight_Data">
+		<CloudLayer>Infrastructure</CloudLayer>
+		<CloudLayer>Service</CloudLayer>
+		<ConcreteToc>Wellness Welight service</ConcreteToc>
+		<TocDescription>Wellness light service web service</TocDescription>
+		<TocURI>https://cumulus-project.sytes.net:11080</TocURI>
+		<ToTs>
+			<ToT collectorRefID="cCertificate1">
+				<Interface stateRef="*">
+					<type>certificate Checker</type>
+					<call>certifyCumulus</call>
+				</Interface>
+			</ToT>
+			<ToT collectorRefID="cCertificate2">
+				<Interface stateRef="*">
+					<type>certificate Checker</type>
+					<call>certifyCumulus</call>
+				</Interface>
+			</ToT>
+		</ToTs>
+	</ToC>
+
+	<SecurityProperty
+		SecurityPropertyDefinition="Passwords are not stored in plain text and are instead stored either as hash value or encrypted value">
+		<sProperty class="IAM:credential-security:password-storage-protection-level">
+			<propertyPerformance>
+				<propertyPerformanceRow>
+					<propertyPerformanceCell name="level">4
+					</propertyPerformanceCell>
+				</propertyPerformanceRow>
+			</propertyPerformance>
+			<propertyParameterList />
+		</sProperty>
+	</SecurityProperty>
+
+	<CertificationModelTemplateID>cumulus:cm:template:test:02
+	</CertificationModelTemplateID>
+
+	<Collectors>
+		<AbstractCollector Id="0">
+			<TestCategory>Functionality.Input partitioning</TestCategory>
+			<TestType>Equivalence Partioning</TestType>
+			<TestDescription>It must check that the TOC is certify for
+				EKM:key-management:cryptographic-brute-force-resistance property
+			</TestDescription>
+			<TestGenerationModelLink>www.cumulus-project.eu/certificate.sts
+			</TestGenerationModelLink>
+			<TestAttributes>
+				<TestAttribute>
+					<ID>1</ID>
+					<Name>testAttribute</Name>
+					<Value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">check
+						property EKM:key-management:cryptographic-brute-force-resistance
+					</Value>
+				</TestAttribute>
+			</TestAttributes>
+
+			<TestCases>
+				<TestCase>
+					<ID>1</ID>
+					<Description>get certificate status from cumulus repository
+					</Description>
+					<TestInstance Operation="Configuration">
+						<Input>TOC=Welight_Data
+							property=EKM:key-management:cryptographic-brute-force-resistance
+						</Input>
+						<expectedoutput>ISSUED</expectedoutput>
+					</TestInstance>
+				</TestCase>
+
+			</TestCases>
+		</AbstractCollector>
+
+		<Collector Descriptor="get certificate for given toc and property"
+			Id="cCertificate1" isStatic="false" toDeploy="true">
+			<ConditionForSomministration>
+
+			</ConditionForSomministration>
+			<Aggregator AggregatorDescription="alltrue" transient="1">
+				<TestMetrics>
+					<TestMetric name="eachtestcase">
+						<expected>true</expected>
+						<tested></tested>
+						<operation>=</operation>
+					</TestMetric>
+				</TestMetrics>
+			</Aggregator>
+			<AbstractCollectorRef id="0" />
+		</Collector>
+
+
+
+		<AbstractCollector Id="1">
+			<TestCategory>Functionality.Input partitioning</TestCategory>
+			<TestType>Equivalence Partioning</TestType>
+			<TestDescription>It must check that the TOC is certify for the
+				property EKM:key-management:key-access-control-level
+			</TestDescription>
+			<TestGenerationModelLink>www.cumulus-project.eu/certificate.sts
+			</TestGenerationModelLink>
+			<TestAttributes>
+				<TestAttribute>
+					<ID>1</ID>
+					<Name>testAttribute</Name>
+					<Value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">EKM:key-management:key-access-control-level-4
+					</Value>
+				</TestAttribute>
+			</TestAttributes>
+
+			<TestCases>
+				<TestCase>
+					<ID>1</ID>
+					<Description>get certificate status from cumulus repository
+					</Description>
+					<TestInstance Operation="Configuration">
+						<Input>TOC=Welight_Data
+							property=EKM:key-management:key-access-control-level-4</Input>
+						<expectedoutput>ISSUED</expectedoutput>
+					</TestInstance>
+				</TestCase>
+
+			</TestCases>
+		</AbstractCollector>
+
+		<Collector Descriptor="get certificate for given toc and property"
+			Id="cCertificate2" isStatic="false" toDeploy="true">
+			<ConditionForSomministration>
+
+			</ConditionForSomministration>
+			<Aggregator AggregatorDescription="alltrue" transient="1">
+				<TestMetrics>
+					<TestMetric name="eachtestcase">
+						<expected>true</expected>
+						<tested></tested>
+						<operation>=</operation>
+					</TestMetric>
+				</TestMetrics>
+			</Aggregator>
+			<AbstractCollectorRef id="1" />
+		</Collector>
+
+	</Collectors>
+</test:testBasedCertifcationModel>

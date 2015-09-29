@@ -96,7 +96,7 @@
 		</ToTs>
 	</ToC>
 	<SecurityProperty
-		SecurityPropertyDefinition="Series of N unsuccesful logins, suspension of account (for a duration T)">
+		SecurityPropertyDefinition="Prevent data-leakage using encryption">
 		<sProperty class="CSA:DSI:data-leakage-control:data-leakage-prevention">
 			<propertyPerformance>
 				<propertyPerformanceRow>
@@ -122,46 +122,6 @@
 				</TestAttribute>
 			</TestAttributes>
 			<TestCases>
-				<TestCase>
-					<ID>1</ID>
-					<Description>check keyset </Description>
-					<TestInstance Operation="0">
-						<Preconditions></Preconditions>
-						<HiddenCommunications></HiddenCommunications>
-						<Input>host=192.168.43.62 port=22 ssh_key_path=/opt/testAgent/testRepository/cumulus.key ssh_server_key_path=/opt/testAgent/testRepository/TestFile/ssh_public_key</Input>
-						<ExpectedOutput></ExpectedOutput>
-						<PostConditions></PostConditions>
-					</TestInstance>
-					<TestInstance Operation="1">
-						<Preconditions></Preconditions>
-						<HiddenCommunications></HiddenCommunications>
-						<Input>filepath=/opt/welight/app/keyset/1 chmod=664</Input>
-						<ExpectedOutput></ExpectedOutput>
-						<PostConditions></PostConditions>
-					</TestInstance>
-					<TestInstance Operation="2">
-						<Preconditions></Preconditions>
-						<HiddenCommunications></HiddenCommunications>
-						<Input>username_owner=cumulus</Input>
-						<ExpectedOutput></ExpectedOutput>
-						<PostConditions></PostConditions>
-						<!-- expected output read write or execute -->
-					</TestInstance>
-					<TestInstance Operation="3">
-						<Preconditions></Preconditions>
-						<HiddenCommunications></HiddenCommunications>
-						<Input>username_group=cumulus_grp</Input>
-						<ExpectedOutput></ExpectedOutput>
-						<PostConditions></PostConditions>
-					</TestInstance>
-					<TestInstance Operation="4">
-						<Preconditions></Preconditions>
-						<HiddenCommunications></HiddenCommunications>
-						<Input>username_other=cumulus_oth</Input>
-						<ExpectedOutput></ExpectedOutput>
-						<PostConditions></PostConditions>
-					</TestInstance>
-				</TestCase>
 			</TestCases>
 		</AbstractCollector>
 		<AbstractCollector Id="1">
@@ -319,6 +279,7 @@
 						<operation>=</operation>
 					</TestMetric>
 				</TestMetrics>
+				
 			</Aggregator>
 			<AbstractCollectorRef id="0" />
 		</Collector>

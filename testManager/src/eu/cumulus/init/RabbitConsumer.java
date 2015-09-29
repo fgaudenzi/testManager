@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -12,6 +13,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
 import org.apache.log4j.Logger;
+import org.cumulus.certificate.model.test.GeneralCollectorType;
+import org.cumulus.certificate.model.test.TestCaseType;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
@@ -19,6 +22,8 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.GetResponse;
 import com.rabbitmq.client.QueueingConsumer;
 
+import cumulus.components.auditing.client.xmpp.CumulusEventSerialized;
+import cumulus.xmpp.sender.Sender;
 import eu.cumulus.utilities.TestManagerHelperMethods;
 import eu.cumulus.engine.CertificationEvaluator;
 
@@ -105,6 +110,11 @@ public class RabbitConsumer implements Runnable {
 		checkers.put(cm, new CertificationEvaluator(xml,status));
 		
 	}
+	public void updateCertification(String cm,String xml, HashMap<GeneralCollectorType, ArrayList<TestCaseType>> toRun,String status){
+		CertificationEvaluator ce=checkers.get(cm);
+		ce.resetStatus(toRun);
+		
+	}
 	
 	@Override
 	public void run() {
@@ -147,7 +157,20 @@ public class RabbitConsumer implements Runnable {
 	            if(agents.contains(messages[0])){
 	            	log.info("Agent Accepted");
 	            	//find cm and update collector
+	            	if(messages[2].contains("monitor")){
+	            		System.out.println("result from activities requested from monitor");
+	            		Sender send = new Sender();
+	    				Date date = new Date();
+	    				CumulusEventSerialized event = new CumulusEventSerialized(
+	    						"??",
+	    						"ready to send back messages to monitor",
+	    						"hyberid certification", date, 0, "", "", "", "", "",
+	    						0, "", "", "", "");
+
+	    				send.sendAuditEvent(event, "/Users/iridium/Documents/workspace/testManager/testManager/AUDIT_PROPERTIES/openfire.properties");
 	            	
+	            	}
+	            	else
 	            	//agent1#cumulus:cm:id:test:58917#cfile#True
 	            	checkers.get(messages[1]).updateCollector(messages[2], messages[3]);;
 	            }

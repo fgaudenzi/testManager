@@ -15,6 +15,11 @@
       </resource>
     </resources>
     <plugins>
+    <plugin>
+                    <groupId>net.surguy</groupId>
+                    <artifactId>maven-displaylicense-plugin</artifactId>
+                    <version>0.6</version>
+                </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
@@ -57,11 +62,16 @@
     
     
     
+    
+    
+    
     <dependency>
 	<groupId>org.codehaus.janino</groupId>
 	<artifactId>janino</artifactId>
 	<version>2.7.6</version>
 </dependency>
+
+
     
     
     
@@ -129,7 +139,121 @@
 	<version>2.5</version>
 </dependency>
 
-  </dependencies>
+
+ <dependency>
+    <groupId>org.cumulus.auditmodule</groupId>
+    <artifactId>auditClient</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>/Users/iridium/CumulusSVN/WPs/WP5/D5.4/Development/auditingClient.jar</systemPath>
+    </dependency>
+<dependency>
+	<groupId>org.apache.activemq</groupId>
+	<artifactId>activemq-core</artifactId>
+	<version>5.3.0</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.activemq</groupId>
+	<artifactId>activemq-all</artifactId>
+	<version>5.2.0</version>
+</dependency>
+
+<dependency>
+	<groupId>commons-beanutils</groupId>
+	<artifactId>commons-beanutils</artifactId>
+	<version>1.8.2</version>
+</dependency>
+
+<dependency>
+	<groupId>commons-collections</groupId>
+	<artifactId>commons-collections</artifactId>
+	<version>3.2.1</version>
+</dependency>
+<dependency>
+	<groupId>commons-lang</groupId>
+	<artifactId>commons-lang</artifactId>
+	<version>2.4</version>
+</dependency>
+
+ <dependency>
+    <groupId>org.cumulus.auditmodule.domain</groupId>
+    <artifactId>domain</artifactId>
+    <version>0.2.0</version>
+    <scope>system</scope>
+    <systemPath>/Users/iridium/CumulusSVN/WPs/WP5/D5.4/Development/AuditingClient/lib/domain-0.2.0.jar</systemPath>
+    </dependency>
+    
+     <dependency>
+    <groupId>org.cumulus.auditmodule.eventbus</groupId>
+    <artifactId>eventbus</artifactId>
+    <version>0.1</version>
+    <scope>system</scope>
+    <systemPath>/Users/iridium/CumulusSVN/WPs/WP5/D5.4/Development/AuditingClient/lib/eventbus.jar</systemPath>
+    </dependency>
+
+ <dependency>
+    <groupId>org.cumulus.auditmodule.jetlang</groupId>
+    <artifactId>jetlang</artifactId>
+    <version>0.1.7</version>
+    <scope>system</scope>
+    <systemPath>/Users/iridium/CumulusSVN/WPs/WP5/D5.4/Development/AuditingClient/lib/jetlang-0.1.7.jar</systemPath>
+    </dependency>
+
+
+<dependency>
+	<groupId>org.osgi</groupId>
+	<artifactId>org.osgi.core</artifactId>
+	<version>4.2.0</version>
+</dependency>
+<dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-api</artifactId>
+	<version>1.7.10</version>
+</dependency>
+<dependency>
+	<groupId>jivesoftware</groupId>
+	<artifactId>smack</artifactId>
+	<version>3.1.0</version>
+</dependency>
+<dependency>
+	<groupId>jivesoftware</groupId>
+	<artifactId>smackx</artifactId>
+	<version>3.1.0</version>
+</dependency>
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context</artifactId>
+	<version>2.5.6</version>
+</dependency>
+<dependency>
+	<groupId>org.springframework.osgi</groupId>
+	<artifactId>spring-osgi-annotation</artifactId>
+	<version>1.2.0</version>
+</dependency>
+<dependency>
+	<groupId>com.thoughtworks.xstream</groupId>
+	<artifactId>xstream</artifactId>
+	<version>1.3.1</version>
+</dependency>
+<dependency>
+  <groupId>org.xmlunit</groupId>
+  <artifactId>xmlunit-core</artifactId>
+  <version>2.0.0-SNAPSHOT</version>
+</dependency>
+
+
+
+
+
+</dependencies>
+<repositories>
+<repository>
+  <id>snapshots-repo</id>
+  <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  <releases><enabled>false</enabled></releases>
+  <snapshots><enabled>true</enabled></snapshots>
+</repository>
+</repositories>
   
   
 </project>

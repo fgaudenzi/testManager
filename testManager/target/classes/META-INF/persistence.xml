@@ -23,7 +23,7 @@
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://172.25.27.5:3306/cumulus_testManager_db" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://database:3306/cumulus_testManager_db" />
 			<property name="javax.persistence.jdbc.user" value="test_cumulus" />
 			<property name="javax.persistence.jdbc.password" value="cumulus!" />
 			

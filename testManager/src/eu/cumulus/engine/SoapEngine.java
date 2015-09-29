@@ -23,6 +23,8 @@ import org.apache.log4j.Logger;
 import org.cumulus.certificate.cert.CertificateType;
 import org.cumulus.certificate.model.test.*;
 
+import cumulus.components.auditing.client.xmpp.CumulusEventSerialized;
+import cumulus.xmpp.sender.Sender;
 import eu.cumulus.Persistence.DBtables.*;
 import eu.cumulus.ServiceInterface.GetCertificate_TestingResponse;
 import eu.cumulus.init.RabbitBroadcaster;
@@ -118,7 +120,7 @@ public class SoapEngine {
 		//TODO this method could work or update CM with few changes
 		
 		//if cmR already exists then return false
-		while(checker!=null){
+	/*	while(checker!=null){
 			 Random rand = new Random();
 
 			    // nextInt is normally exclusive of the top value,
@@ -134,6 +136,10 @@ public class SoapEngine {
 			checker=manager.find(Certificationmodel.class, cmR.getId());
 			//return false;
 	    //otherwise add to database		
+		}*/
+		
+		if(checker!=null){
+			updateCM(checker,cmR);
 		}
 		
 		
@@ -236,6 +242,7 @@ public class SoapEngine {
 			Iterator<Certificate> it_c=ll.iterator();
 			if(it_c.hasNext()){
 				return String.valueOf(it_c.next().getId());
+				//return "-1";
 			}else{
 			
 			Certificate cc = new Certificate();
@@ -271,6 +278,23 @@ public class SoapEngine {
 
 			manager.close();
 			//return Integer.toString(cc.getId());
+			
+			try{
+				Sender send = new Sender();
+				Date date = new Date();
+				CumulusEventSerialized event = new CumulusEventSerialized(
+						cc.getTimestamp(),
+						"Certificate"+ cc.getTimestamp()+" created for CM:"+cmId +"Set in NOT ISSUED state.",
+						"test based certification", date, 0, "", "", "", "", "",
+						0, "", "", "", "");
+
+				send.sendAuditEvent(event, "/Users/iridium/Documents/workspace/testManager/testManager/AUDIT_PROPERTIES/openfire.properties");
+        
+			}catch(Exception e){
+				System.out.println(e);
+			}
+			
+			
 			return cc.getTimestamp();
 			}
 
@@ -382,5 +406,60 @@ public class SoapEngine {
 			}
 		}
 	}
-
+	
+	public static boolean updateCM(Certificationmodel oldCM,Certificationmodel newCM){
+		if(!validateCM(oldCM,newCM))
+			return false;
+		else{
+			
+			EntityManagerFactory factory = Persistence
+					.createEntityManagerFactory("testManager");
+			EntityManager manager = factory.createEntityManager();
+			Certificationmodel cm = oldCM;
+			Query query = manager
+					.createNamedQuery("Certificate.findPerCM").setParameter("cm", cm);
+			
+			List<Certificate> ll = query.getResultList();
+			Iterator<Certificate> it_c=ll.iterator();
+			if(it_c.hasNext()){
+				HashMap<GeneralCollectorType, ArrayList<TestCaseType>> toRun = AdvanceCertification.collectorCompare(oldCM,newCM);
+				
+				
+				//SEND MESSAGE
+				ServletContextGetter a=new ServletContextGetter();
+				ServletContext servletC = a.getServletContext();
+				RabbitBroadcaster rb=(RabbitBroadcaster)servletC.getAttribute("Rabbit_Sender");
+				
+				RabbitConsumer rc=(RabbitConsumer)servletC.getAttribute("Rabbit_Consumer");
+				//rc.updateCertification(oldCM.getId(), newCM.getXml(), toRun, "SUSPENDED");
+				//rc.addCertification(cm.getId(), cm.getXml(),"SUSPENDED");
+				String[] mess=AgentMessageParser.fromCMtoAgentMessage(newCM.getXml(),toRun);
+				for(String m:mess){
+					String message=eu.cumulus.utilities.Celemetry.wrapMessage(m);
+				try {
+					rb.sendMessage(message);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				}
+				
+				
+				
+			}else{
+				return true;
+				
+			}
+			
+			
+			
+		}
+			
+	return true;
+				
+	}
+	public static boolean validateCM(Certificationmodel checker,Certificationmodel cmR){
+		return true;
+		
+}
 }

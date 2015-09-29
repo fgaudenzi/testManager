@@ -110,7 +110,7 @@ public class InitContextListener implements ServletContextListener{
     		List<Certificate> all_certificates = query.getResultList();
     		Iterator<Certificate> it_cc=all_certificates.iterator();
     	//TODO
-    		 while(it_cc.hasNext()){
+    /*	 while(it_cc.hasNext()){
 	    	    	Certificate cc=it_cc.next();
 	    	    	Certificationmodel cm=cc.getCertificationmodel();
 	    			rbmqL.addCertification(cm.getId(), cm.getXml(),cc.getStatus());
@@ -124,7 +124,7 @@ public class InitContextListener implements ServletContextListener{
 	    					e.printStackTrace();
 	    				}
 	    			}
-    		 }
+    		 }*/
 	        
 	        log.info("ServletContextListener TestManager started-end");
 	        //executor.execute(command);

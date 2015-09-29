@@ -87,8 +87,8 @@ eu/slaatsoi/slamodel/VariableDeclrType.class
 org/cumulus/certificate/model/StateType.class
 org/cumulus/certificate/model/SignatureType.class
 org/cumulus/certificate/model/package-info.class
-eu/cumulus/agentMessageXML/TestInstanceType.class
 org/cumulus/certificate/model/CommonCertificationModelType.class
+eu/cumulus/agentMessageXML/TestInstanceType.class
 eu/slaatsoi/slamodel/CONSTType.class
 org/cumulus/certificate/model/test/package-info.class
 eu/cumulus/testingpkg/ParallelTester.class
@@ -154,8 +154,8 @@ org/cumulus/certificate/cert/Artifacts.class
 eu/slaatsoi/slamodel/MapStndAny.class
 back/org/cumulus/certificate/test/TestCertificationModel.class
 eu/slaatsoi/slamodel/ConstraintExprType.class
-back/org/cumulus/certificate/SignatureType.class
 org/cumulus/certificate/model/ComponentsType.class
+back/org/cumulus/certificate/SignatureType.class
 back/org/cumulus/certificate/CertificateType.class
 org/cumulus/certificate/cert/package-info.class
 eu/cumulus/engine/CertificationEvaluator.class
@@ -213,8 +213,8 @@ eu/cumulus/engine/SoapEngine.class
 eu/cumulus/Persistence/DBtables/Testcase.class
 eu/cumulus/graphTeste/DefaultType.class
 eu/slaatsoi/slamodel/InterfaceOperationPropertyType.class
-eu/cumulus/testingpkg/TestManagerInterface.class
 org/cumulus/certificate/model/EvidenceConditionType.class
+eu/cumulus/testingpkg/TestManagerInterface.class
 eu/cumulus/ServiceInterface/TestManagerInterface.class
 eu/cumulus/certModelXML/certificationSummury/CertificateSummariesType.class
 eu/cumulus/graphTeste/KeyForType.class
