@@ -1,14 +1,26 @@
-"A Certification Framework for Cloud-based Services"(submitted to ISSTA 2015)
 
-Authors: Marco Anisetti, Claudio A. Ardagna, Ernesto Damiani, Filippo Gaudenzi
+"A Certification Framework for Cloud-based Services"
 
-Dipartimento di Informatica Università degli Studi di Milano Crema, Italy, 26013
+Authors:M.Anisetti, A.C. Ardagna, E. Damiani, F.  Gaudenzi
+
+Dipartimento di Informatica Università degli Studi di Milano
+Via Bramante 65
+Crema, Italy, 26013  
 
 
-Information for reviewers
 This page contains the links to the code of our certification framework components and all certification artifacts at their basis.
 
-A running version of our sytem is available [here](http://sesar.di.unimi.it/ISSTA2015)
+A running version of our system is available [here](http://159.149.70.50:3000/index.html)
+
+Software
+
+	Software is available at:
+	
+	- [Test Manager] (http://github.com/)
+
+	- [Test Agent]   (http://github.com/)
+
+	sorry, url were anonymezed.
 
 XML SCHEMA
 	
@@ -63,12 +75,3 @@ Probe
 	The third users specified above must have testAgent's ssh public key in their ~/.ssh/authorized_keys file
 
 
-
-
-Software
-
-	Software is available at:
-	
-	- Test Manager http://github.com/fgaudenzi/TestManager
-
-	- Test Agent   http://github.com/fgaudenzi/TestAgent
